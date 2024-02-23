@@ -1,20 +1,21 @@
 function enemyLevel (numEnemyLevel: number) {
     enemyList = [
     assets.image`archnemesis`,
+    assets.image`rottenBanana`,
     img`
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . 3 3 . . . . 
+        . . . . . . . 3 3 3 . . . . . . 
+        . . . . . 3 3 3 . . . . . . . . 
+        . . . . 3 3 . . . . . . . . . . 
+        . . . . . . 3 3 3 3 3 3 3 . . . 
+        . . . . . . . . . . . 3 3 3 . . 
+        . . . . . . . . 3 3 3 . . . . . 
+        . . . . . . 3 3 . . . . . . . . 
+        . . . . . . 3 . . . . . . . . . 
+        . . . . . . 3 3 . . . . . . . . 
+        . . . . . . . . 3 3 3 3 3 3 . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
@@ -23,140 +24,122 @@ function enemyLevel (numEnemyLevel: number) {
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        `,
-    img`
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
+        . . . . . . . . 2 2 2 . . . . . 
+        . . . 2 2 2 2 2 . . . . . . . . 
+        . . 2 . . . . . . . . . . . . . 
+        . . 2 2 2 2 2 2 2 2 2 2 2 . . . 
+        . . . . . . . . . . . 2 2 . . . 
+        . . . . 2 2 2 2 2 2 2 2 . . . . 
+        . . . 2 2 . . . . . . . . . . . 
+        . . . 2 2 . . . . . . . . . . . 
+        . . . . 2 2 2 2 2 2 . . . . . . 
+        . . . . . . . . . 2 . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         `,
     img`
         . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        `,
-    img`
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
+        . . . . b b b b b b b b b b . . 
+        . . . b . . . . . . . . . . . . 
+        . . . b . . . . . . . . . . . . 
+        . . . b b . . . . . . . . . . . 
+        . . . . . b b b b b b b . . . . 
+        . . . . . . . . . . . . b . . . 
+        . . . . . . . . . . . . b . . . 
+        . . . . . . . b b b b b . . . . 
+        . . . . b b b . . . . . . . . . 
+        . . b b . . . . . . . . . . . . 
+        . . b . . . . . . . . . . . . . 
+        . . b b b . . . . . . . . . . . 
+        . . . . b b b b b b . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         `,
     img`
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        `,
-    img`
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
+        . . . . 8 . . . . . 8 8 8 . . . 
+        . . . . 8 . . . . . 8 . . . . . 
+        . 8 . . 8 . . . . 8 . . . . . . 
+        8 . . 8 8 . . . 8 8 . . . . . . 
+        8 . . 8 . . . . 8 . . . . . . . 
+        8 . . 8 . . . . 8 . . . . . . . 
+        8 . . 8 . . . . . . . . . . . 8 
+        8 . . . . . . . . . . . . . 8 . 
+        8 8 . . . . . . . . . . . 8 8 . 
+        . 8 8 . . . . . . . . . 8 8 . . 
+        . . . 8 8 8 . . . . 8 8 . . . . 
+        . . . . . 8 8 8 8 8 8 . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         `,
     img`
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
+        . . . 6 6 . . . . . . . . . . . 
+        . . . . . 6 6 6 6 6 . . . . . . 
+        . . . . . . . . . 6 . . . . . . 
+        . . . . . . . 6 6 6 . . . . . . 
+        . . . . 6 6 6 . . . . . . . . . 
+        . . . 6 6 . . . . . . . . . . . 
+        . . . 6 . . . . . . . . . . . . 
+        . . . 6 . . . . . . . . . . . . 
+        . . . 6 . . . . . . . . . . . . 
+        . . . . 6 6 6 6 6 . . . . . . . 
+        . . . . . . . . 6 6 6 6 . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         `,
     img`
         . . . . . . . . . . . . . . . . 
+        . . . . . a a a a a a a a . . . 
+        . . . . a a a a a . . . . . . . 
+        . . . a a a . . . a a a . . . . 
+        . . a . a . . . . . . . a . . . 
+        . . a . a . . . . . . . a . . . 
+        . . a a a a . . . . . a a . . . 
+        . . . a a a a a a a a . . . . . 
+        . a a . . . . a . a a . . . . . 
+        a . . . . . . . a a a a . . . . 
+        a . . . . . . . . . a a . . . . 
+        a a . . . . . . . a a . a a . . 
+        . a a a a a a a a . . . . a . . 
+        . . . . . . . . a a a a a a . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
+        `,
+    img`
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . d . . . . 
+        . . . . . . . . . d d d . . . . 
+        . . . . . . . . d d . . . . . . 
+        . . . . . . . d d d d d d d d d 
+        . . . . . d d d . . . . . . . . 
+        . . . . d . d . . . . . . . . . 
+        . . . d d . d . . . . . . . . . 
+        . . . d . d . . . . . . . . . . 
+        . . . d . d d . . . . . . . . . 
+        . . . d . . d d . . . . . . . . 
+        . . . . d d d d . . . . . . . . 
+        . . . . . . . d . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
+        `,
+    img`
         . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . f f . . . . . 
+        . . . . . . . . . . f . . . . . 
+        . . . . . . . f f f f f f f f f 
+        . . . . f f f f f . . . . . . f 
+        . . . f . f f . f . . . . . . f 
+        . . . . f f . . . f . . . . f . 
+        . . . . f f . . . f . . . . f . 
+        . . . f f f . . . f . . . f . . 
+        . . . f f f . . f f . . f . . . 
+        . . . f f f f f f f f f . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
@@ -165,11 +148,32 @@ function enemyLevel (numEnemyLevel: number) {
         `
     ]
     if (numEnemyLevel <= 3) {
-    	
+        for (let index = 0; index < 6; index++) {
+            enemyList.shift()
+        }
+        for (let index = 0; index < 30; index++) {
+            projectile = sprites.createProjectileFromSide(enemyList._pickRandom(), 0, 60)
+            projectile.setKind(SpriteKind.Enemy)
+            projectile.setFlag(SpriteFlag.GhostThroughWalls, true)
+            tiles.placeOnTile(projectile, tiles.getTileLocation(randint(0, 29), randint(0, 140)))
+        }
     } else if (numEnemyLevel <= 8) {
-    	
+        for (let index = 0; index < 4; index++) {
+            enemyList.shift()
+        }
+        for (let index = 0; index < 60; index++) {
+            projectile = sprites.createProjectileFromSide(enemyList._pickRandom(), 0, 60)
+            projectile.setKind(SpriteKind.Enemy)
+            projectile.setFlag(SpriteFlag.GhostThroughWalls, true)
+            tiles.placeOnTile(projectile, tiles.getTileLocation(randint(0, 29), randint(0, 140)))
+        }
     } else {
-    	
+        for (let index = 0; index < 80; index++) {
+            projectile = sprites.createProjectileFromSide(enemyList._pickRandom(), 0, 60)
+            projectile.setKind(SpriteKind.Enemy)
+            projectile.setFlag(SpriteFlag.GhostThroughWalls, true)
+            tiles.placeOnTile(projectile, tiles.getTileLocation(randint(0, 29), randint(0, 140)))
+        }
     }
 }
 scene.onHitWall(SpriteKind.Player, function (sprite, location) {
@@ -296,24 +300,25 @@ function lavaRisingLevel (numLavaLevel: number) {
     if (numLavaLevel <= 3) {
         lavaBlock += 1
         for (let index = 0; index <= 30; index++) {
-            tiles.setTileAt(tiles.getTileLocation(0, index * -1 + 134), sprites.dungeon.hazardLava0)
-            tiles.setWallAt(tiles.getTileLocation(index, index * -1 + 134), false)
+            tiles.setTileAt(tiles.getTileLocation(index, lavaBlock * -1 + 154), sprites.dungeon.hazardLava0)
+            tiles.setWallAt(tiles.getTileLocation(index, lavaBlock * -1 + 154), false)
         }
     } else if (numLavaLevel <= 8) {
         lavaBlock += 5
         for (let index = 0; index <= 30; index++) {
-            tiles.setTileAt(tiles.getTileLocation(0, index * -1 + 134), sprites.dungeon.hazardLava0)
-            tiles.setWallAt(tiles.getTileLocation(index, index * -1 + 134), false)
+            tiles.setTileAt(tiles.getTileLocation(index, lavaBlock * -1 + 154), sprites.dungeon.hazardLava0)
+            tiles.setWallAt(tiles.getTileLocation(index, lavaBlock * -1 + 154), false)
         }
     } else {
         lavaBlock += 10
         for (let index = 0; index <= 30; index++) {
-            tiles.setTileAt(tiles.getTileLocation(0, index * -1 + 134), sprites.dungeon.hazardLava0)
-            tiles.setWallAt(tiles.getTileLocation(index, index * -1 + 134), false)
+            tiles.setTileAt(tiles.getTileLocation(index, lavaBlock * -1 + 154), sprites.dungeon.hazardLava0)
+            tiles.setWallAt(tiles.getTileLocation(index, lavaBlock * -1 + 154), false)
         }
     }
 }
 let lavaBlock = 0
+let projectile: Sprite = null
 let enemyList: Image[] = []
 let jumpCount = 0
 let GreenApple: Sprite = null
@@ -443,10 +448,16 @@ tiles.setCurrentTilemap(tilemap`level1`)
 lavaRisingLevel(game.askForNumber("Lava Difficulty Level (0-easiest/9-hardest)", 1))
 enemyLevel(game.askForNumber("Enemy Difficulty Level (0-easiest/9-hardest)", 1))
 GreenApple = sprites.create(assets.image`myImage`, SpriteKind.Player)
-tiles.placeOnTile(GreenApple, tiles.getTileLocation(26, 126))
+tiles.placeOnTile(GreenApple, tiles.getTileLocation(26, 134))
 controller.moveSprite(GreenApple, 100, 0)
 GreenApple.ay = 300
 GreenApple.setStayInScreen(true)
 scene.cameraFollowSprite(GreenApple)
 jumpCount = 0
 info.setLife(20)
+game.onUpdateInterval(2000, function () {
+    enemyLevel(1)
+})
+game.onUpdateInterval(1000, function () {
+    lavaRisingLevel(1)
+})

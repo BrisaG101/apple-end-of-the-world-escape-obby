@@ -9,6 +9,11 @@
         "mimeType": "image/x-mkcd-f4",
         "displayName": "archnemesis"
     },
+    "image2": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAUPVVAAAAAADQVd8NAAAAAPXV/1UAAABQXd311Q0AAFBdXf/VVQAA0NX1VV1dAADd9QVQ3V0NAF1VAADVVQXQ1QAAANBdBdANAAAAUFUFXQUAAAAA1d0NAAAAAABQXQAAAAAAAFBdAAAAAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "rottenBanana"
+    },
     "*": {
         "mimeType": "image/x-mkcd-f4",
         "dataEncoding": "base64",
