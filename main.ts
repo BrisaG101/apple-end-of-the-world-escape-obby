@@ -1,3 +1,9 @@
+namespace SpriteKind {
+    export const simpleEnemy = SpriteKind.create()
+    export const mediumEnemy = SpriteKind.create()
+    export const hardestEnemy = SpriteKind.create()
+    export const biggestBaddestEnemy = SpriteKind.create()
+}
 function enemyLevel (numEnemyLevel: number) {
     enemyList = [
     assets.image`archnemesis`,
@@ -153,7 +159,7 @@ function enemyLevel (numEnemyLevel: number) {
         }
         for (let index = 0; index < 30; index++) {
             projectile = sprites.createProjectileFromSide(enemyList._pickRandom(), 0, 60)
-            projectile.setKind(SpriteKind.Enemy)
+            projectile.setKind(SpriteKind.simpleEnemy)
             projectile.setFlag(SpriteFlag.GhostThroughWalls, true)
             tiles.placeOnTile(projectile, tiles.getTileLocation(randint(0, 29), randint(0, 140)))
         }
@@ -163,14 +169,14 @@ function enemyLevel (numEnemyLevel: number) {
         }
         for (let index = 0; index < 60; index++) {
             projectile = sprites.createProjectileFromSide(enemyList._pickRandom(), 0, 60)
-            projectile.setKind(SpriteKind.Enemy)
+            projectile.setKind(SpriteKind.mediumEnemy)
             projectile.setFlag(SpriteFlag.GhostThroughWalls, true)
             tiles.placeOnTile(projectile, tiles.getTileLocation(randint(0, 29), randint(0, 140)))
         }
     } else {
         for (let index = 0; index < 80; index++) {
             projectile = sprites.createProjectileFromSide(enemyList._pickRandom(), 0, 60)
-            projectile.setKind(SpriteKind.Enemy)
+            projectile.setKind(SpriteKind.hardestEnemy)
             projectile.setFlag(SpriteFlag.GhostThroughWalls, true)
             tiles.placeOnTile(projectile, tiles.getTileLocation(randint(0, 29), randint(0, 140)))
         }
