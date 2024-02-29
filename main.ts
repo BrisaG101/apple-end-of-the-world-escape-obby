@@ -302,6 +302,14 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardLava0, function (sp
         info.changeLifeBy(-1)
     })
 })
+function SpawnInBoss () {
+    if (GreenApple.tileKindAt(TileDirection.Bottom, sprites.builtin.oceanSand14)) {
+        finalBoss = sprites.create(assets.image`archnemesis`, SpriteKind.biggestBaddestEnemy)
+        finalBoss.setVelocity(0, 20)
+        finalBoss.setFlag(SpriteFlag.GhostThroughWalls, false)
+        tiles.placeOnTile(finalBoss, tiles.getTileLocation(3, 14))
+    }
+}
 function lavaRisingLevel (numLavaLevel: number) {
     if (numLavaLevel <= 3) {
         lavaBlock += 1
@@ -324,6 +332,7 @@ function lavaRisingLevel (numLavaLevel: number) {
     }
 }
 let lavaBlock = 0
+let finalBoss: Sprite = null
 let projectile: Sprite = null
 let enemyList: Image[] = []
 let jumpCount = 0
