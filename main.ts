@@ -190,6 +190,17 @@ scene.onHitWall(SpriteKind.Player, function (sprite, location) {
         GreenApple.vy = 0
     }
 })
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile`, function (sprite, location) {
+    if (FinalBossSpawn == false) {
+        if (GreenApple.tileKindAt(TileDirection.Bottom, sprites.builtin.oceanSand14)) {
+            finalBoss = sprites.create(assets.image`archnemesis`, SpriteKind.biggestBaddestEnemy)
+            finalBoss.setVelocity(0, 20)
+            finalBoss.setFlag(SpriteFlag.GhostThroughWalls, false)
+            tiles.placeOnTile(finalBoss, tiles.getTileLocation(3, 14))
+            FinalBossSpawn = true
+        }
+    }
+})
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (jumpCount < 2) {
         jumpCount += 1
@@ -302,14 +313,6 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardLava0, function (sp
         info.changeLifeBy(-1)
     })
 })
-function SpawnInBoss () {
-    if (GreenApple.tileKindAt(TileDirection.Bottom, sprites.builtin.oceanSand14)) {
-        finalBoss = sprites.create(assets.image`archnemesis`, SpriteKind.biggestBaddestEnemy)
-        finalBoss.setVelocity(0, 20)
-        finalBoss.setFlag(SpriteFlag.GhostThroughWalls, false)
-        tiles.placeOnTile(finalBoss, tiles.getTileLocation(3, 14))
-    }
-}
 function lavaRisingLevel (numLavaLevel: number) {
     if (numLavaLevel <= 3) {
         lavaBlock += 1
@@ -335,6 +338,7 @@ let lavaBlock = 0
 let finalBoss: Sprite = null
 let projectile: Sprite = null
 let enemyList: Image[] = []
+let FinalBossSpawn = false
 let jumpCount = 0
 let GreenApple: Sprite = null
 scene.setBackgroundImage(img`
@@ -470,7 +474,7 @@ GreenApple.setStayInScreen(true)
 scene.cameraFollowSprite(GreenApple)
 jumpCount = 0
 info.setLife(70)
-let FinalBossSpawn = true
+FinalBossSpawn = true
 game.onUpdateInterval(2000, function () {
     enemyLevel(1)
 })
