@@ -100,6 +100,17 @@ scene.onHitWall(SpriteKind.Player, function (sprite, location) {
         GreenApple.vy = 0
     }
 })
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile`, function (sprite, location) {
+    if (finalBossSpawned == false) {
+        if (GreenApple.tileKindAt(TileDirection.Bottom, sprites.builtin.oceanSand14)) {
+            finalBoss = sprites.create(assets.image`archnemesis`, SpriteKind.biggestBaddestEnemy)
+            finalBoss.setVelocity(0, 20)
+            finalBoss.setFlag(SpriteFlag.GhostThroughWalls, false)
+            tiles.placeOnTile(finalBoss, tiles.getTileLocation(3, 12))
+            finalBossSpawned = true
+        }
+    }
+})
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (jumpCount < 2) {
         jumpCount += 1
@@ -211,17 +222,6 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardLava0, function (sp
     timer.throttle("action", 1000, function () {
         info.changeLifeBy(-1)
     })
-})
-scene.onOverlapTile(SpriteKind.Player, img`myTile`, function (sprite, location) {
-    if (finalBossSpawned == false) {
-        if (GreenApple.tileKindAt(TileDirection.Bottom, sprites.builtin.oceanSand14)) {
-            finalBoss = sprites.create(assets.image`archnemesis`, SpriteKind.biggestBaddestEnemy)
-            finalBoss.setVelocity(0, 20)
-            finalBoss.setFlag(SpriteFlag.GhostThroughWalls, false)
-            tiles.placeOnTile(finalBoss, tiles.getTileLocation(3, 12))
-            finalBossSpawned = true
-        }
-    }
 })
 function SpawnInBoss () {
     if (GreenApple.tileKindAt(TileDirection.Bottom, sprites.builtin.oceanSand14)) {
