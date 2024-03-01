@@ -469,7 +469,8 @@ GreenApple.ay = 300
 GreenApple.setStayInScreen(true)
 scene.cameraFollowSprite(GreenApple)
 jumpCount = 0
-info.setLife(20)
+info.setLife(70)
+let FinalBossSpawn = true
 game.onUpdateInterval(2000, function () {
     enemyLevel(1)
 })
