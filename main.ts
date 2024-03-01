@@ -223,14 +223,6 @@ scene.onOverlapTile(SpriteKind.Player, img`myTile`, function (sprite, location) 
         }
     }
 })
-function SpawnInBoss () {
-    if (GreenApple.tileKindAt(TileDirection.Bottom, sprites.builtin.oceanSand14)) {
-        finalBoss = sprites.create(assets.image`archnemesis`, SpriteKind.biggestBaddestEnemy)
-        finalBoss.setVelocity(0, 20)
-        finalBoss.setFlag(SpriteFlag.GhostThroughWalls, false)
-        tiles.placeOnTile(finalBoss, tiles.getTileLocation(3, 14))
-    }
-}
 sprites.onOverlap(SpriteKind.Player, SpriteKind.mediumEnemy, function (sprite, otherSprite) {
     sprites.destroy(otherSprite, effects.fire, 100)
     info.changeLifeBy(-1)
