@@ -230,7 +230,6 @@ function SpawnInBoss () {
         finalBoss.setFlag(SpriteFlag.GhostThroughWalls, false)
         tiles.placeOnTile(finalBoss, tiles.getTileLocation(3, 14))
     }
-    SpawnInBoss()
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.mediumEnemy, function (sprite, otherSprite) {
     sprites.destroy(otherSprite, effects.fire, 100)
