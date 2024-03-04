@@ -259,7 +259,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile`, function (sprite2, l
             finalBoss = sprites.create(assets.image`archnemesis`, SpriteKind.biggestBaddestEnemy)
             finalBoss.setVelocity(0, 20)
             finalBoss.setFlag(SpriteFlag.GhostThroughWalls, false)
-            tiles.placeOnTile(finalBoss, tiles.getTileLocation(6, 15))
+            tiles.placeOnTile(finalBoss, tiles.getTileLocation(3, 12))
         }
     }
     finalBossSpawned = true
