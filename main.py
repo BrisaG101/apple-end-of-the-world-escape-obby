@@ -1,12 +1,12 @@
 @namespace
 class SpriteKind:
-    simpleEnemy = SpriteKind.create()
+    healthAdd = SpriteKind.create()
     mediumEnemy = SpriteKind.create()
     hardestEnemy = SpriteKind.create()
     biggestBaddestEnemy = SpriteKind.create()
 def enemyLevel(numEnemyLevel: number):
-    global enemyList, projectile
-    enemyList = [assets.image("""
+    global spawningList, projectile
+    spawningList = [assets.image("""
             archnemesis
         """),
         assets.image("""
@@ -65,118 +65,28 @@ def enemyLevel(numEnemyLevel: number):
                     . . . . b b b b b b . . . . . . 
                     . . . . . . . . . . . . . . . . 
                     . . . . . . . . . . . . . . . .
-        """),
-        img("""
-            . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . 8 . . . . . 8 8 8 . . . 
-                    . . . . 8 . . . . . 8 . . . . . 
-                    . 8 . . 8 . . . . 8 . . . . . . 
-                    8 . . 8 8 . . . 8 8 . . . . . . 
-                    8 . . 8 . . . . 8 . . . . . . . 
-                    8 . . 8 . . . . 8 . . . . . . . 
-                    8 . . 8 . . . . . . . . . . . 8 
-                    8 . . . . . . . . . . . . . 8 . 
-                    8 8 . . . . . . . . . . . 8 8 . 
-                    . 8 8 . . . . . . . . . 8 8 . . 
-                    . . . 8 8 8 . . . . 8 8 . . . . 
-                    . . . . . 8 8 8 8 8 8 . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . .
-        """),
-        img("""
-            . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . 6 6 . . . . . . . . . . . 
-                    . . . . . 6 6 6 6 6 . . . . . . 
-                    . . . . . . . . . 6 . . . . . . 
-                    . . . . . . . 6 6 6 . . . . . . 
-                    . . . . 6 6 6 . . . . . . . . . 
-                    . . . 6 6 . . . . . . . . . . . 
-                    . . . 6 . . . . . . . . . . . . 
-                    . . . 6 . . . . . . . . . . . . 
-                    . . . 6 . . . . . . . . . . . . 
-                    . . . . 6 6 6 6 6 . . . . . . . 
-                    . . . . . . . . 6 6 6 6 . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . .
-        """),
-        img("""
-            . . . . . . . . . . . . . . . . 
-                    . . . . . a a a a a a a a . . . 
-                    . . . . a a a a a . . . . . . . 
-                    . . . a a a . . . a a a . . . . 
-                    . . a . a . . . . . . . a . . . 
-                    . . a . a . . . . . . . a . . . 
-                    . . a a a a . . . . . a a . . . 
-                    . . . a a a a a a a a . . . . . 
-                    . a a . . . . a . a a . . . . . 
-                    a . . . . . . . a a a a . . . . 
-                    a . . . . . . . . . a a . . . . 
-                    a a . . . . . . . a a . a a . . 
-                    . a a a a a a a a . . . . a . . 
-                    . . . . . . . . a a a a a a . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . .
-        """),
-        img("""
-            . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . d . . . . 
-                    . . . . . . . . . d d d . . . . 
-                    . . . . . . . . d d . . . . . . 
-                    . . . . . . . d d d d d d d d d 
-                    . . . . . d d d . . . . . . . . 
-                    . . . . d . d . . . . . . . . . 
-                    . . . d d . d . . . . . . . . . 
-                    . . . d . d . . . . . . . . . . 
-                    . . . d . d d . . . . . . . . . 
-                    . . . d . . d d . . . . . . . . 
-                    . . . . d d d d . . . . . . . . 
-                    . . . . . . . d . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . .
-        """),
-        img("""
-            . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . f f . . . . . 
-                    . . . . . . . . . . f . . . . . 
-                    . . . . . . . f f f f f f f f f 
-                    . . . . f f f f f . . . . . . f 
-                    . . . f . f f . f . . . . . . f 
-                    . . . . f f . . . f . . . . f . 
-                    . . . . f f . . . f . . . . f . 
-                    . . . f f f . . . f . . . f . . 
-                    . . . f f f . . f f . . f . . . 
-                    . . . f f f f f f f f f . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . .
         """)]
     if numEnemyLevel <= 3:
-        for index in range(6):
-            enemyList.shift()
-        for index2 in range(30):
-            projectile = sprites.create_projectile_from_side(enemyList._pick_random(), 0, 60)
-            projectile.set_kind(SpriteKind.simpleEnemy)
+        for index in range(4):
+            spawningList.shift()
+        for index2 in range(10):
+            projectile = sprites.create_projectile_from_side(spawningList._pick_random(), 0, 60)
+            projectile.set_kind(SpriteKind.healthAdd)
             projectile.set_flag(SpriteFlag.GHOST_THROUGH_WALLS, True)
             tiles.place_on_tile(projectile,
                 tiles.get_tile_location(randint(0, 29), randint(0, 140)))
-    elif numEnemyLevel <= 8:
-        for index3 in range(4):
-            enemyList.shift()
-        for index4 in range(60):
-            projectile = sprites.create_projectile_from_side(enemyList._pick_random(), 0, 60)
+    elif numEnemyLevel <= 7:
+        for index3 in range(3):
+            spawningList.shift()
+        for index4 in range(15):
+            projectile = sprites.create_projectile_from_side(spawningList._pick_random(), 0, 60)
             projectile.set_kind(SpriteKind.mediumEnemy)
             projectile.set_flag(SpriteFlag.GHOST_THROUGH_WALLS, True)
             tiles.place_on_tile(projectile,
                 tiles.get_tile_location(randint(0, 29), randint(0, 140)))
     else:
-        for index5 in range(80):
-            projectile = sprites.create_projectile_from_side(enemyList._pick_random(), 0, 60)
+        for index5 in range(20):
+            projectile = sprites.create_projectile_from_side(spawningList._pick_random(), 0, 60)
             projectile.set_kind(SpriteKind.hardestEnemy)
             projectile.set_flag(SpriteFlag.GHOST_THROUGH_WALLS, True)
             tiles.place_on_tile(projectile,
@@ -189,6 +99,24 @@ def on_hit_wall(sprite, location):
     if GreenApple.is_hitting_tile(CollisionDirection.LEFT) or GreenApple.is_hitting_tile(CollisionDirection.RIGHT):
         GreenApple.vy = 0
 scene.on_hit_wall(SpriteKind.player, on_hit_wall)
+
+def on_overlap_tile(sprite2, location2):
+    global finalBoss, finalBossSpawned
+    if finalBossSpawned == False:
+        if GreenApple.tile_kind_at(TileDirection.BOTTOM, sprites.builtin.ocean_sand14):
+            finalBoss = sprites.create(assets.image("""
+                    archnemesis
+                """),
+                SpriteKind.biggestBaddestEnemy)
+            finalBoss.set_velocity(0, 20)
+            finalBoss.set_flag(SpriteFlag.GHOST_THROUGH_WALLS, False)
+            tiles.place_on_tile(finalBoss, tiles.get_tile_location(3, 12))
+    finalBossSpawned = True
+scene.on_overlap_tile(SpriteKind.player,
+    assets.tile("""
+        myTile
+    """),
+    on_overlap_tile)
 
 def on_a_pressed():
     global jumpCount
@@ -293,7 +221,7 @@ def on_a_pressed():
             False)
 controller.A.on_event(ControllerButtonEvent.PRESSED, on_a_pressed)
 
-def on_overlap_tile(sprite2, location2):
+def on_overlap_tile2(sprite3, location3):
     if controller.up.is_pressed():
         GreenApple.vy = -50
     else:
@@ -305,7 +233,23 @@ def on_overlap_tile(sprite2, location2):
     
 scene.on_overlap_tile(SpriteKind.player,
     sprites.dungeon.hazard_lava0,
-    on_overlap_tile)
+    on_overlap_tile2)
+
+def SpawnInBoss():
+    global finalBoss
+    if GreenApple.tile_kind_at(TileDirection.BOTTOM, sprites.builtin.ocean_sand14):
+        finalBoss = sprites.create(assets.image("""
+                archnemesis
+            """),
+            SpriteKind.biggestBaddestEnemy)
+        finalBoss.set_velocity(0, 20)
+        finalBoss.set_flag(SpriteFlag.GHOST_THROUGH_WALLS, False)
+        tiles.place_on_tile(finalBoss, tiles.get_tile_location(3, 14))
+
+def on_on_overlap(sprite4, otherSprite):
+    sprites.destroy(otherSprite, effects.fire, 100)
+    info.change_life_by(-1)
+sprites.on_overlap(SpriteKind.player, SpriteKind.mediumEnemy, on_on_overlap)
 
 def lavaRisingLevel(numLavaLevel: number):
     global lavaBlock
@@ -315,7 +259,7 @@ def lavaRisingLevel(numLavaLevel: number):
             tiles.set_tile_at(tiles.get_tile_location(index6, lavaBlock * -1 + 154),
                 sprites.dungeon.hazard_lava0)
             tiles.set_wall_at(tiles.get_tile_location(index6, lavaBlock * -1 + 154), False)
-    elif numLavaLevel <= 8:
+    elif numLavaLevel <= 7:
         lavaBlock += 5
         for index7 in range(31):
             tiles.set_tile_at(tiles.get_tile_location(index7, lavaBlock * -1 + 154),
@@ -327,9 +271,22 @@ def lavaRisingLevel(numLavaLevel: number):
             tiles.set_tile_at(tiles.get_tile_location(index8, lavaBlock * -1 + 154),
                 sprites.dungeon.hazard_lava0)
             tiles.set_wall_at(tiles.get_tile_location(index8, lavaBlock * -1 + 154), False)
+
+def on_on_overlap2(sprite5, otherSprite2):
+    sprites.destroy(otherSprite2, effects.bubbles, 100)
+    info.change_life_by(1)
+sprites.on_overlap(SpriteKind.player, SpriteKind.healthAdd, on_on_overlap2)
+
+def on_on_overlap3(sprite6, otherSprite3):
+    sprites.destroy(otherSprite3, effects.fire, 100)
+    info.change_life_by(-2)
+sprites.on_overlap(SpriteKind.player, SpriteKind.hardestEnemy, on_on_overlap3)
+
 lavaBlock = 0
+finalBoss: Sprite = None
 projectile: Sprite = None
-enemyList: List[Image] = []
+spawningList: List[Image] = []
+finalBossSpawned = False
 jumpCount = 0
 GreenApple: Sprite = None
 scene.set_background_image(img("""
@@ -468,7 +425,8 @@ GreenApple.ay = 300
 GreenApple.set_stay_in_screen(True)
 scene.camera_follow_sprite(GreenApple)
 jumpCount = 0
-info.set_life(20)
+info.set_life(30)
+finalBossSpawned = False
 
 def on_update_interval():
     enemyLevel(1)

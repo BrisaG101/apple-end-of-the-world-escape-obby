@@ -67,24 +67,24 @@ function enemyLevel (numEnemyLevel: number) {
         for (let index = 0; index < 4; index++) {
             spawningList.shift()
         }
-        for (let index = 0; index < 30; index++) {
+        for (let index = 0; index < 10; index++) {
             projectile = sprites.createProjectileFromSide(spawningList._pickRandom(), 0, 60)
             projectile.setKind(SpriteKind.healthAdd)
             projectile.setFlag(SpriteFlag.GhostThroughWalls, true)
             tiles.placeOnTile(projectile, tiles.getTileLocation(randint(0, 29), randint(0, 140)))
         }
-    } else if (numEnemyLevel <= 8) {
+    } else if (numEnemyLevel <= 7) {
         for (let index = 0; index < 3; index++) {
             spawningList.shift()
         }
-        for (let index = 0; index < 60; index++) {
+        for (let index = 0; index < 15; index++) {
             projectile = sprites.createProjectileFromSide(spawningList._pickRandom(), 0, 60)
             projectile.setKind(SpriteKind.mediumEnemy)
             projectile.setFlag(SpriteFlag.GhostThroughWalls, true)
             tiles.placeOnTile(projectile, tiles.getTileLocation(randint(0, 29), randint(0, 140)))
         }
     } else {
-        for (let index = 0; index < 80; index++) {
+        for (let index = 0; index < 20; index++) {
             projectile = sprites.createProjectileFromSide(spawningList._pickRandom(), 0, 60)
             projectile.setKind(SpriteKind.hardestEnemy)
             projectile.setFlag(SpriteFlag.GhostThroughWalls, true)
@@ -100,16 +100,9 @@ scene.onHitWall(SpriteKind.Player, function (sprite, location) {
         GreenApple.vy = 0
     }
 })
-scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile`, function (sprite, location) {
-    if (finalBossSpawned == false) {
-        if (GreenApple.tileKindAt(TileDirection.Bottom, sprites.builtin.oceanSand14)) {
-            finalBoss = sprites.create(assets.image`archnemesis`, SpriteKind.biggestBaddestEnemy)
-            finalBoss.setVelocity(0, 20)
-            finalBoss.setFlag(SpriteFlag.GhostThroughWalls, false)
-            tiles.placeOnTile(finalBoss, tiles.getTileLocation(3, 12))
-        }
-    }
-    finalBossSpawned = true
+sprites.onOverlap(SpriteKind.Player, SpriteKind.healthAdd, function (sprite5, otherSprite2) {
+    sprites.destroy(otherSprite2, effects.bubbles, 100)
+    info.changeLifeBy(1)
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (jumpCount < 2) {
@@ -213,7 +206,15 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         )
     }
 })
-scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardLava0, function (sprite, location) {
+sprites.onOverlap(SpriteKind.Player, SpriteKind.mediumEnemy, function (sprite4, otherSprite) {
+    sprites.destroy(otherSprite, effects.fire, 100)
+    info.changeLifeBy(-1)
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.hardestEnemy, function (sprite6, otherSprite3) {
+    sprites.destroy(otherSprite3, effects.fire, 100)
+    info.changeLifeBy(-2)
+})
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardLava0, function (sprite3, location3) {
     if (controller.up.isPressed()) {
         GreenApple.vy = -50
     } else {
@@ -231,10 +232,6 @@ function SpawnInBoss () {
         tiles.placeOnTile(finalBoss, tiles.getTileLocation(3, 14))
     }
 }
-sprites.onOverlap(SpriteKind.Player, SpriteKind.mediumEnemy, function (sprite, otherSprite) {
-    sprites.destroy(otherSprite, effects.fire, 100)
-    info.changeLifeBy(-1)
-})
 function lavaRisingLevel (numLavaLevel: number) {
     if (numLavaLevel <= 3) {
         lavaBlock += 1
@@ -242,7 +239,7 @@ function lavaRisingLevel (numLavaLevel: number) {
             tiles.setTileAt(tiles.getTileLocation(index6, lavaBlock * -1 + 154), sprites.dungeon.hazardLava0)
             tiles.setWallAt(tiles.getTileLocation(index6, lavaBlock * -1 + 154), false)
         }
-    } else if (numLavaLevel <= 8) {
+    } else if (numLavaLevel <= 7) {
         lavaBlock += 5
         for (let index7 = 0; index7 <= 30; index7++) {
             tiles.setTileAt(tiles.getTileLocation(index7, lavaBlock * -1 + 154), sprites.dungeon.hazardLava0)
@@ -256,13 +253,16 @@ function lavaRisingLevel (numLavaLevel: number) {
         }
     }
 }
-sprites.onOverlap(SpriteKind.Player, SpriteKind.healthAdd, function (sprite, otherSprite) {
-    sprites.destroy(otherSprite, effects.bubbles, 100)
-    info.changeLifeBy(1)
-})
-sprites.onOverlap(SpriteKind.Player, SpriteKind.hardestEnemy, function (sprite, otherSprite) {
-    sprites.destroy(otherSprite, effects.fire, 100)
-    info.changeLifeBy(-2)
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile`, function (sprite2, location2) {
+    if (finalBossSpawned == false) {
+        if (GreenApple.tileKindAt(TileDirection.Bottom, sprites.builtin.oceanSand14)) {
+            finalBoss = sprites.create(assets.image`archnemesis`, SpriteKind.biggestBaddestEnemy)
+            finalBoss.setVelocity(0, 20)
+            finalBoss.setFlag(SpriteFlag.GhostThroughWalls, false)
+            tiles.placeOnTile(finalBoss, tiles.getTileLocation(6, 15))
+        }
+    }
+    finalBossSpawned = true
 })
 let lavaBlock = 0
 let finalBoss: Sprite = null
