@@ -387,7 +387,7 @@ scene.setBackgroundImage(img`
     `)
 tiles.setCurrentTilemap(tilemap`level1`)
 lavaRisingLevel(game.askForNumber("Lava Difficulty Level (0-easiest/9-hardest)", 1))
-enemyLevel(game.askForNumber("Enemy Difficulty Level (0-easiest/9-hardest)", 1))
+let enemyLevel2 = game.askForNumber("Enemy Difficulty Level (0-easiest/9-hardest)", 1)
 GreenApple = sprites.create(assets.image`myImage`, SpriteKind.Player)
 tiles.placeOnTile(GreenApple, tiles.getTileLocation(26, 134))
 controller.moveSprite(GreenApple, 100, 0)
@@ -398,7 +398,7 @@ jumpCount = 0
 info.setLife(30)
 finalBossSpawned = false
 game.onUpdateInterval(2000, function () {
-    enemyLevel(1)
+    enemyLevel(enemyLevel2)
 })
 game.onUpdateInterval(1000, function () {
     lavaRisingLevel(1)
