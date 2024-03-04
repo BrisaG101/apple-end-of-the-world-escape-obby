@@ -9,65 +9,65 @@ function enemyLevel (numEnemyLevel: number) {
     assets.image`archnemesis`,
     assets.image`rottenBanana`,
     img`
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . 3 3 . . . . 
-        . . . . . . . 3 3 3 . . . . . . 
-        . . . . . 3 3 3 . . . . . . . . 
-        . . . . 3 3 . . . . . . . . . . 
-        . . . . . . 3 3 3 3 3 3 3 . . . 
-        . . . . . . . . . . . 3 3 3 . . 
-        . . . . . . . . 3 3 3 . . . . . 
-        . . . . . . 3 3 . . . . . . . . 
-        . . . . . . 3 . . . . . . . . . 
-        . . . . . . 3 3 . . . . . . . . 
-        . . . . . . . . 3 3 3 3 3 3 . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
+        . . . . . . . e c 7 . . . . . . 
+        . . . . e e e c 7 7 e e . . . . 
+        . . c e e e e c 7 e 2 2 e e . . 
+        . c e e e e e c 6 e e 2 2 2 e . 
+        . c e e e 2 e c c 2 4 5 4 2 e . 
+        c e e e 2 2 2 2 2 2 4 5 5 2 2 e 
+        c e e 2 2 2 2 2 2 2 2 4 4 2 2 e 
+        c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
+        c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
+        c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
+        c e e 2 2 2 2 2 2 2 2 2 2 4 2 e 
+        . e e e 2 2 2 2 2 2 2 2 2 4 e . 
+        . 2 e e 2 2 2 2 2 2 2 2 4 2 e . 
+        . . 2 e e 2 2 2 2 2 4 4 2 e . . 
+        . . . 2 2 e e 4 4 4 2 e e . . . 
+        . . . . . 2 2 e e e e . . . . . 
         `,
     img`
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . 2 2 2 . . . . . 
-        . . . 2 2 2 2 2 . . . . . . . . 
-        . . 2 . . . . . . . . . . . . . 
-        . . 2 2 2 2 2 2 2 2 2 2 2 . . . 
-        . . . . . . . . . . . 2 2 . . . 
-        . . . . 2 2 2 2 2 2 2 2 . . . . 
-        . . . 2 2 . . . . . . . . . . . 
-        . . . 2 2 . . . . . . . . . . . 
-        . . . . 2 2 2 2 2 2 . . . . . . 
-        . . . . . . . . . 2 . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
+        4 4 4 . . 4 4 4 4 4 . . . . . . 
+        4 5 5 4 4 5 5 5 5 5 4 4 . . . . 
+        b 4 5 5 1 5 1 1 1 5 5 5 4 . . . 
+        . b 5 5 5 5 1 1 5 5 1 1 5 4 . . 
+        . b d 5 5 5 5 5 5 5 5 1 1 5 4 . 
+        b 4 5 5 5 5 5 5 5 5 5 5 1 5 4 . 
+        c d 5 5 5 5 5 5 5 5 5 5 5 5 5 4 
+        c d 4 5 5 5 5 5 5 5 5 5 5 1 5 4 
+        c 4 5 5 5 d 5 5 5 5 5 5 5 5 5 4 
+        c 4 d 5 4 5 d 5 5 5 5 5 5 5 5 4 
+        . c 4 5 5 5 5 d d d 5 5 5 5 5 b 
+        . c 4 d 5 4 5 d 4 4 d 5 5 5 4 c 
+        . . c 4 4 d 4 4 4 4 4 d d 5 d c 
+        . . . c 4 4 4 4 4 4 4 4 5 5 5 4 
+        . . . . c c b 4 4 4 b b 4 5 4 4 
+        . . . . . . c c c c c c b b 4 . 
         `,
     img`
-        . . . . . . . . . . . . . . . . 
-        . . . . b b b b b b b b b b . . 
-        . . . b . . . . . . . . . . . . 
-        . . . b . . . . . . . . . . . . 
-        . . . b b . . . . . . . . . . . 
-        . . . . . b b b b b b b . . . . 
-        . . . . . . . . . . . . b . . . 
-        . . . . . . . . . . . . b . . . 
-        . . . . . . . b b b b b . . . . 
-        . . . . b b b . . . . . . . . . 
-        . . b b . . . . . . . . . . . . 
-        . . b . . . . . . . . . . . . . 
-        . . b b b . . . . . . . . . . . 
-        . . . . b b b b b b . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
+        . . 2 2 b b b b b . . . . . . . 
+        . 2 b 4 4 4 4 4 4 b . . . . . . 
+        2 2 4 4 4 4 d d 4 4 b . . . . . 
+        2 b 4 4 4 4 4 4 d 4 b . . . . . 
+        2 b 4 4 4 4 4 4 4 d 4 b . . . . 
+        2 b 4 4 4 4 4 4 4 4 4 b . . . . 
+        2 b 4 4 4 4 4 4 4 4 4 e . . . . 
+        2 2 b 4 4 4 4 4 4 4 b e . . . . 
+        . 2 b b b 4 4 4 b b b e . . . . 
+        . . e b b b b b b b e e . . . . 
+        . . . e e b 4 4 b e e e b . . . 
+        . . . . . e e e e e e b d b b . 
+        . . . . . . . . . . . b 1 1 1 b 
+        . . . . . . . . . . . c 1 d d b 
+        . . . . . . . . . . . c 1 b c . 
+        . . . . . . . . . . . . c c . . 
         `
     ]
     if (numEnemyLevel <= 3) {
         for (let index = 0; index < 4; index++) {
             spawningList.shift()
         }
-        for (let index = 0; index < 10; index++) {
+        for (let index = 0; index < 30; index++) {
             projectile = sprites.createProjectileFromSide(spawningList._pickRandom(), 0, 60)
             projectile.setKind(SpriteKind.healthAdd)
             projectile.setFlag(SpriteFlag.GhostThroughWalls, true)
@@ -77,14 +77,14 @@ function enemyLevel (numEnemyLevel: number) {
         for (let index = 0; index < 3; index++) {
             spawningList.shift()
         }
-        for (let index = 0; index < 15; index++) {
+        for (let index = 0; index < 60; index++) {
             projectile = sprites.createProjectileFromSide(spawningList._pickRandom(), 0, 60)
             projectile.setKind(SpriteKind.mediumEnemy)
             projectile.setFlag(SpriteFlag.GhostThroughWalls, true)
             tiles.placeOnTile(projectile, tiles.getTileLocation(randint(0, 29), randint(0, 140)))
         }
     } else {
-        for (let index = 0; index < 20; index++) {
+        for (let index = 0; index < 80; index++) {
             projectile = sprites.createProjectileFromSide(spawningList._pickRandom(), 0, 60)
             projectile.setKind(SpriteKind.hardestEnemy)
             projectile.setFlag(SpriteFlag.GhostThroughWalls, true)
@@ -224,14 +224,6 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardLava0, function (sp
         info.changeLifeBy(-1)
     })
 })
-function SpawnInBoss () {
-    if (GreenApple.tileKindAt(TileDirection.Bottom, sprites.builtin.oceanSand14)) {
-        finalBoss = sprites.create(assets.image`archnemesis`, SpriteKind.biggestBaddestEnemy)
-        finalBoss.setVelocity(0, 20)
-        finalBoss.setFlag(SpriteFlag.GhostThroughWalls, false)
-        tiles.placeOnTile(finalBoss, tiles.getTileLocation(3, 14))
-    }
-}
 function lavaRisingLevel (numLavaLevel: number) {
     if (numLavaLevel <= 3) {
         lavaBlock += 1
@@ -264,8 +256,8 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile`, function (sprite2, l
     }
     finalBossSpawned = true
 })
-let lavaBlock = 0
 let finalBoss: Sprite = null
+let lavaBlock = 0
 let projectile: Sprite = null
 let spawningList: Image[] = []
 let finalBossSpawned = false
