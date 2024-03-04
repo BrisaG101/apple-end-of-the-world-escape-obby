@@ -1,8 +1,186 @@
 namespace SpriteKind {
-    export const healthAdd = SpriteKind.create()
+    export const simpleEnemy = SpriteKind.create()
     export const mediumEnemy = SpriteKind.create()
     export const hardestEnemy = SpriteKind.create()
     export const biggestBaddestEnemy = SpriteKind.create()
+}
+function enemyLevel (numEnemyLevel: number) {
+    enemyList = [
+    assets.image`archnemesis`,
+    assets.image`rottenBanana`,
+    img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . 3 3 . . . . 
+        . . . . . . . 3 3 3 . . . . . . 
+        . . . . . 3 3 3 . . . . . . . . 
+        . . . . 3 3 . . . . . . . . . . 
+        . . . . . . 3 3 3 3 3 3 3 . . . 
+        . . . . . . . . . . . 3 3 3 . . 
+        . . . . . . . . 3 3 3 . . . . . 
+        . . . . . . 3 3 . . . . . . . . 
+        . . . . . . 3 . . . . . . . . . 
+        . . . . . . 3 3 . . . . . . . . 
+        . . . . . . . . 3 3 3 3 3 3 . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `,
+    img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . 2 2 2 . . . . . 
+        . . . 2 2 2 2 2 . . . . . . . . 
+        . . 2 . . . . . . . . . . . . . 
+        . . 2 2 2 2 2 2 2 2 2 2 2 . . . 
+        . . . . . . . . . . . 2 2 . . . 
+        . . . . 2 2 2 2 2 2 2 2 . . . . 
+        . . . 2 2 . . . . . . . . . . . 
+        . . . 2 2 . . . . . . . . . . . 
+        . . . . 2 2 2 2 2 2 . . . . . . 
+        . . . . . . . . . 2 . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `,
+    img`
+        . . . . . . . . . . . . . . . . 
+        . . . . b b b b b b b b b b . . 
+        . . . b . . . . . . . . . . . . 
+        . . . b . . . . . . . . . . . . 
+        . . . b b . . . . . . . . . . . 
+        . . . . . b b b b b b b . . . . 
+        . . . . . . . . . . . . b . . . 
+        . . . . . . . . . . . . b . . . 
+        . . . . . . . b b b b b . . . . 
+        . . . . b b b . . . . . . . . . 
+        . . b b . . . . . . . . . . . . 
+        . . b . . . . . . . . . . . . . 
+        . . b b b . . . . . . . . . . . 
+        . . . . b b b b b b . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `,
+    img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . 8 . . . . . 8 8 8 . . . 
+        . . . . 8 . . . . . 8 . . . . . 
+        . 8 . . 8 . . . . 8 . . . . . . 
+        8 . . 8 8 . . . 8 8 . . . . . . 
+        8 . . 8 . . . . 8 . . . . . . . 
+        8 . . 8 . . . . 8 . . . . . . . 
+        8 . . 8 . . . . . . . . . . . 8 
+        8 . . . . . . . . . . . . . 8 . 
+        8 8 . . . . . . . . . . . 8 8 . 
+        . 8 8 . . . . . . . . . 8 8 . . 
+        . . . 8 8 8 . . . . 8 8 . . . . 
+        . . . . . 8 8 8 8 8 8 . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `,
+    img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . 6 6 . . . . . . . . . . . 
+        . . . . . 6 6 6 6 6 . . . . . . 
+        . . . . . . . . . 6 . . . . . . 
+        . . . . . . . 6 6 6 . . . . . . 
+        . . . . 6 6 6 . . . . . . . . . 
+        . . . 6 6 . . . . . . . . . . . 
+        . . . 6 . . . . . . . . . . . . 
+        . . . 6 . . . . . . . . . . . . 
+        . . . 6 . . . . . . . . . . . . 
+        . . . . 6 6 6 6 6 . . . . . . . 
+        . . . . . . . . 6 6 6 6 . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `,
+    img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . a a a a a a a a . . . 
+        . . . . a a a a a . . . . . . . 
+        . . . a a a . . . a a a . . . . 
+        . . a . a . . . . . . . a . . . 
+        . . a . a . . . . . . . a . . . 
+        . . a a a a . . . . . a a . . . 
+        . . . a a a a a a a a . . . . . 
+        . a a . . . . a . a a . . . . . 
+        a . . . . . . . a a a a . . . . 
+        a . . . . . . . . . a a . . . . 
+        a a . . . . . . . a a . a a . . 
+        . a a a a a a a a . . . . a . . 
+        . . . . . . . . a a a a a a . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `,
+    img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . d . . . . 
+        . . . . . . . . . d d d . . . . 
+        . . . . . . . . d d . . . . . . 
+        . . . . . . . d d d d d d d d d 
+        . . . . . d d d . . . . . . . . 
+        . . . . d . d . . . . . . . . . 
+        . . . d d . d . . . . . . . . . 
+        . . . d . d . . . . . . . . . . 
+        . . . d . d d . . . . . . . . . 
+        . . . d . . d d . . . . . . . . 
+        . . . . d d d d . . . . . . . . 
+        . . . . . . . d . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `,
+    img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . f f . . . . . 
+        . . . . . . . . . . f . . . . . 
+        . . . . . . . f f f f f f f f f 
+        . . . . f f f f f . . . . . . f 
+        . . . f . f f . f . . . . . . f 
+        . . . . f f . . . f . . . . f . 
+        . . . . f f . . . f . . . . f . 
+        . . . f f f . . . f . . . f . . 
+        . . . f f f . . f f . . f . . . 
+        . . . f f f f f f f f f . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `
+    ]
+    if (numEnemyLevel <= 3) {
+        for (let index = 0; index < 6; index++) {
+            enemyList.shift()
+        }
+        for (let index = 0; index < 30; index++) {
+            projectile = sprites.createProjectileFromSide(enemyList._pickRandom(), 0, 60)
+            projectile.setKind(SpriteKind.simpleEnemy)
+            projectile.setFlag(SpriteFlag.GhostThroughWalls, true)
+            tiles.placeOnTile(projectile, tiles.getTileLocation(randint(0, 29), randint(0, 140)))
+        }
+    } else if (numEnemyLevel <= 8) {
+        for (let index = 0; index < 4; index++) {
+            enemyList.shift()
+        }
+        for (let index = 0; index < 60; index++) {
+            projectile = sprites.createProjectileFromSide(enemyList._pickRandom(), 0, 60)
+            projectile.setKind(SpriteKind.mediumEnemy)
+            projectile.setFlag(SpriteFlag.GhostThroughWalls, true)
+            tiles.placeOnTile(projectile, tiles.getTileLocation(randint(0, 29), randint(0, 140)))
+        }
+    } else {
+        for (let index = 0; index < 80; index++) {
+            projectile = sprites.createProjectileFromSide(enemyList._pickRandom(), 0, 60)
+            projectile.setKind(SpriteKind.hardestEnemy)
+            projectile.setFlag(SpriteFlag.GhostThroughWalls, true)
+            tiles.placeOnTile(projectile, tiles.getTileLocation(randint(0, 29), randint(0, 140)))
+        }
+    }
 }
 scene.onHitWall(SpriteKind.Player, function (sprite, location) {
     if (!(GreenApple.isHittingTile(CollisionDirection.Top))) {
@@ -12,98 +190,6 @@ scene.onHitWall(SpriteKind.Player, function (sprite, location) {
         GreenApple.vy = 0
     }
 })
-sprites.onOverlap(SpriteKind.Player, SpriteKind.healthAdd, function (sprite5, otherSprite2) {
-    sprites.destroy(otherSprite2, effects.bubbles, 100)
-    info.changeLifeBy(1)
-})
-function enemyLevel2 (numEnemyLevel: number) {
-    spawningList = [
-    assets.image`archnemesis`,
-    assets.image`rottenBanana`,
-    img`
-        . . . . . . . e c 7 . . . . . . 
-        . . . . e e e c 7 7 e e . . . . 
-        . . c e e e e c 7 e 2 2 e e . . 
-        . c e e e e e c 6 e e 2 2 2 e . 
-        . c e e e 2 e c c 2 4 5 4 2 e . 
-        c e e e 2 2 2 2 2 2 4 5 5 2 2 e 
-        c e e 2 2 2 2 2 2 2 2 4 4 2 2 e 
-        c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
-        c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
-        c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
-        c e e 2 2 2 2 2 2 2 2 2 2 4 2 e 
-        . e e e 2 2 2 2 2 2 2 2 2 4 e . 
-        . 2 e e 2 2 2 2 2 2 2 2 4 2 e . 
-        . . 2 e e 2 2 2 2 2 4 4 2 e . . 
-        . . . 2 2 e e 4 4 4 2 e e . . . 
-        . . . . . 2 2 e e e e . . . . . 
-        `,
-    img`
-        4 4 4 . . 4 4 4 4 4 . . . . . . 
-        4 5 5 4 4 5 5 5 5 5 4 4 . . . . 
-        b 4 5 5 1 5 1 1 1 5 5 5 4 . . . 
-        . b 5 5 5 5 1 1 5 5 1 1 5 4 . . 
-        . b d 5 5 5 5 5 5 5 5 1 1 5 4 . 
-        b 4 5 5 5 5 5 5 5 5 5 5 1 5 4 . 
-        c d 5 5 5 5 5 5 5 5 5 5 5 5 5 4 
-        c d 4 5 5 5 5 5 5 5 5 5 5 1 5 4 
-        c 4 5 5 5 d 5 5 5 5 5 5 5 5 5 4 
-        c 4 d 5 4 5 d 5 5 5 5 5 5 5 5 4 
-        . c 4 5 5 5 5 d d d 5 5 5 5 5 b 
-        . c 4 d 5 4 5 d 4 4 d 5 5 5 4 c 
-        . . c 4 4 d 4 4 4 4 4 d d 5 d c 
-        . . . c 4 4 4 4 4 4 4 4 5 5 5 4 
-        . . . . c c b 4 4 4 b b 4 5 4 4 
-        . . . . . . c c c c c c b b 4 . 
-        `,
-    img`
-        . . 2 2 b b b b b . . . . . . . 
-        . 2 b 4 4 4 4 4 4 b . . . . . . 
-        2 2 4 4 4 4 d d 4 4 b . . . . . 
-        2 b 4 4 4 4 4 4 d 4 b . . . . . 
-        2 b 4 4 4 4 4 4 4 d 4 b . . . . 
-        2 b 4 4 4 4 4 4 4 4 4 b . . . . 
-        2 b 4 4 4 4 4 4 4 4 4 e . . . . 
-        2 2 b 4 4 4 4 4 4 4 b e . . . . 
-        . 2 b b b 4 4 4 b b b e . . . . 
-        . . e b b b b b b b e e . . . . 
-        . . . e e b 4 4 b e e e b . . . 
-        . . . . . e e e e e e b d b b . 
-        . . . . . . . . . . . b 1 1 1 b 
-        . . . . . . . . . . . c 1 d d b 
-        . . . . . . . . . . . c 1 b c . 
-        . . . . . . . . . . . . c c . . 
-        `
-    ]
-    if (numEnemyLevel <= 3) {
-        for (let index = 0; index < 4; index++) {
-            spawningList.shift()
-        }
-        for (let index = 0; index < 30; index++) {
-            projectile = sprites.createProjectileFromSide(spawningList._pickRandom(), 0, 60)
-            projectile.setKind(SpriteKind.healthAdd)
-            projectile.setFlag(SpriteFlag.GhostThroughWalls, true)
-            tiles.placeOnTile(projectile, tiles.getTileLocation(randint(0, 29), randint(0, 140)))
-        }
-    } else if (numEnemyLevel <= 7) {
-        for (let index = 0; index < 3; index++) {
-            spawningList.shift()
-        }
-        for (let index = 0; index < 60; index++) {
-            projectile = sprites.createProjectileFromSide(spawningList._pickRandom(), 0, 60)
-            projectile.setKind(SpriteKind.mediumEnemy)
-            projectile.setFlag(SpriteFlag.GhostThroughWalls, true)
-            tiles.placeOnTile(projectile, tiles.getTileLocation(randint(0, 29), randint(0, 140)))
-        }
-    } else {
-        for (let index = 0; index < 80; index++) {
-            projectile = sprites.createProjectileFromSide(spawningList._pickRandom(), 0, 60)
-            projectile.setKind(SpriteKind.hardestEnemy)
-            projectile.setFlag(SpriteFlag.GhostThroughWalls, true)
-            tiles.placeOnTile(projectile, tiles.getTileLocation(randint(0, 29), randint(0, 140)))
-        }
-    }
-}
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (jumpCount < 2) {
         jumpCount += 1
@@ -206,15 +292,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         )
     }
 })
-sprites.onOverlap(SpriteKind.Player, SpriteKind.mediumEnemy, function (sprite4, otherSprite) {
-    sprites.destroy(otherSprite, effects.fire, 100)
-    info.changeLifeBy(-1)
-})
-sprites.onOverlap(SpriteKind.Player, SpriteKind.hardestEnemy, function (sprite6, otherSprite3) {
-    sprites.destroy(otherSprite3, effects.fire, 100)
-    info.changeLifeBy(-2)
-})
-scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardLava0, function (sprite3, location3) {
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardLava0, function (sprite, location) {
     if (controller.up.isPressed()) {
         GreenApple.vy = -50
     } else {
@@ -227,40 +305,27 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardLava0, function (sp
 function lavaRisingLevel (numLavaLevel: number) {
     if (numLavaLevel <= 3) {
         lavaBlock += 1
-        for (let index6 = 0; index6 <= 30; index6++) {
-            tiles.setTileAt(tiles.getTileLocation(index6, lavaBlock * -1 + 154), sprites.dungeon.hazardLava0)
-            tiles.setWallAt(tiles.getTileLocation(index6, lavaBlock * -1 + 154), false)
+        for (let index = 0; index <= 30; index++) {
+            tiles.setTileAt(tiles.getTileLocation(index, lavaBlock * -1 + 154), sprites.dungeon.hazardLava0)
+            tiles.setWallAt(tiles.getTileLocation(index, lavaBlock * -1 + 154), false)
         }
-    } else if (numLavaLevel <= 7) {
+    } else if (numLavaLevel <= 8) {
         lavaBlock += 5
-        for (let index7 = 0; index7 <= 30; index7++) {
-            tiles.setTileAt(tiles.getTileLocation(index7, lavaBlock * -1 + 154), sprites.dungeon.hazardLava0)
-            tiles.setWallAt(tiles.getTileLocation(index7, lavaBlock * -1 + 154), false)
+        for (let index = 0; index <= 30; index++) {
+            tiles.setTileAt(tiles.getTileLocation(index, lavaBlock * -1 + 154), sprites.dungeon.hazardLava0)
+            tiles.setWallAt(tiles.getTileLocation(index, lavaBlock * -1 + 154), false)
         }
     } else {
         lavaBlock += 10
-        for (let index8 = 0; index8 <= 30; index8++) {
-            tiles.setTileAt(tiles.getTileLocation(index8, lavaBlock * -1 + 154), sprites.dungeon.hazardLava0)
-            tiles.setWallAt(tiles.getTileLocation(index8, lavaBlock * -1 + 154), false)
+        for (let index = 0; index <= 30; index++) {
+            tiles.setTileAt(tiles.getTileLocation(index, lavaBlock * -1 + 154), sprites.dungeon.hazardLava0)
+            tiles.setWallAt(tiles.getTileLocation(index, lavaBlock * -1 + 154), false)
         }
     }
 }
-scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile`, function (sprite2, location2) {
-    if (finalBossSpawned == false) {
-        if (GreenApple.tileKindAt(TileDirection.Bottom, sprites.builtin.oceanSand14)) {
-            finalBoss = sprites.create(assets.image`archnemesis`, SpriteKind.biggestBaddestEnemy)
-            finalBoss.setVelocity(0, 20)
-            finalBoss.setFlag(SpriteFlag.GhostThroughWalls, false)
-            tiles.placeOnTile(finalBoss, tiles.getTileLocation(3, 12))
-        }
-    }
-    finalBossSpawned = true
-})
-let finalBoss: Sprite = null
 let lavaBlock = 0
 let projectile: Sprite = null
-let spawningList: Image[] = []
-let finalBossSpawned = false
+let enemyList: Image[] = []
 let jumpCount = 0
 let GreenApple: Sprite = null
 scene.setBackgroundImage(img`
@@ -387,7 +452,7 @@ scene.setBackgroundImage(img`
     `)
 tiles.setCurrentTilemap(tilemap`level1`)
 lavaRisingLevel(game.askForNumber("Lava Difficulty Level (0-easiest/9-hardest)", 1))
-let enemyLevel = game.askForNumber("Enemy Difficulty Level (0-easiest/9-hardest)", 1)
+enemyLevel(game.askForNumber("Enemy Difficulty Level (0-easiest/9-hardest)", 1))
 GreenApple = sprites.create(assets.image`myImage`, SpriteKind.Player)
 tiles.placeOnTile(GreenApple, tiles.getTileLocation(26, 134))
 controller.moveSprite(GreenApple, 100, 0)
@@ -395,10 +460,9 @@ GreenApple.ay = 300
 GreenApple.setStayInScreen(true)
 scene.cameraFollowSprite(GreenApple)
 jumpCount = 0
-info.setLife(30)
-finalBossSpawned = false
+info.setLife(20)
 game.onUpdateInterval(2000, function () {
-    enemyLevel(enemyLevel)
+    enemyLevel(1)
 })
 game.onUpdateInterval(1000, function () {
     lavaRisingLevel(1)
