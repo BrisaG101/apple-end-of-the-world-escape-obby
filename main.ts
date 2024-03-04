@@ -4,7 +4,19 @@ namespace SpriteKind {
     export const hardestEnemy = SpriteKind.create()
     export const biggestBaddestEnemy = SpriteKind.create()
 }
-function enemyLevel (numEnemyLevel: number) {
+scene.onHitWall(SpriteKind.Player, function (sprite, location) {
+    if (!(GreenApple.isHittingTile(CollisionDirection.Top))) {
+        jumpCount = 0
+    }
+    if (GreenApple.isHittingTile(CollisionDirection.Left) || GreenApple.isHittingTile(CollisionDirection.Right)) {
+        GreenApple.vy = 0
+    }
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.healthAdd, function (sprite5, otherSprite2) {
+    sprites.destroy(otherSprite2, effects.bubbles, 100)
+    info.changeLifeBy(1)
+})
+function enemyLevel2 (numEnemyLevel: number) {
     spawningList = [
     assets.image`archnemesis`,
     assets.image`rottenBanana`,
@@ -92,18 +104,6 @@ function enemyLevel (numEnemyLevel: number) {
         }
     }
 }
-scene.onHitWall(SpriteKind.Player, function (sprite, location) {
-    if (!(GreenApple.isHittingTile(CollisionDirection.Top))) {
-        jumpCount = 0
-    }
-    if (GreenApple.isHittingTile(CollisionDirection.Left) || GreenApple.isHittingTile(CollisionDirection.Right)) {
-        GreenApple.vy = 0
-    }
-})
-sprites.onOverlap(SpriteKind.Player, SpriteKind.healthAdd, function (sprite5, otherSprite2) {
-    sprites.destroy(otherSprite2, effects.bubbles, 100)
-    info.changeLifeBy(1)
-})
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (jumpCount < 2) {
         jumpCount += 1
@@ -387,7 +387,7 @@ scene.setBackgroundImage(img`
     `)
 tiles.setCurrentTilemap(tilemap`level1`)
 lavaRisingLevel(game.askForNumber("Lava Difficulty Level (0-easiest/9-hardest)", 1))
-let enemyLevel2 = game.askForNumber("Enemy Difficulty Level (0-easiest/9-hardest)", 1)
+let enemyLevel = game.askForNumber("Enemy Difficulty Level (0-easiest/9-hardest)", 1)
 GreenApple = sprites.create(assets.image`myImage`, SpriteKind.Player)
 tiles.placeOnTile(GreenApple, tiles.getTileLocation(26, 134))
 controller.moveSprite(GreenApple, 100, 0)
@@ -398,7 +398,7 @@ jumpCount = 0
 info.setLife(30)
 finalBossSpawned = false
 game.onUpdateInterval(2000, function () {
-    enemyLevel(enemyLevel2)
+    enemyLevel(enemyLevel)
 })
 game.onUpdateInterval(1000, function () {
     lavaRisingLevel(1)
