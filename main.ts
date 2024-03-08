@@ -3,6 +3,7 @@ namespace SpriteKind {
     export const mediumEnemy = SpriteKind.create()
     export const hardestEnemy = SpriteKind.create()
     export const biggestBaddestEnemy = SpriteKind.create()
+    export const attack = SpriteKind.create()
 }
 scene.onHitWall(SpriteKind.Player, function (sprite, location) {
     if (!(GreenApple.isHittingTile(CollisionDirection.Top))) {
@@ -11,6 +12,31 @@ scene.onHitWall(SpriteKind.Player, function (sprite, location) {
     if (GreenApple.isHittingTile(CollisionDirection.Left) || GreenApple.isHittingTile(CollisionDirection.Right)) {
         GreenApple.vy = 0
     }
+})
+sprites.onOverlap(SpriteKind.attack, SpriteKind.biggestBaddestEnemy, function (sprite, otherSprite) {
+    sprites.destroy(sprite, effects.fire, 100)
+    scaling.scaleByPercent(otherSprite, -10, ScaleDirection.Uniformly, ScaleAnchor.Middle)
+})
+controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+    flyingSeed = sprites.createProjectileFromSprite(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . e e e . . . . . . . . . 
+        . e e e e e e e e e . . . . . . 
+        . e e e e e e e e e e e e e e . 
+        . e e e e e e e e e e e e e e e 
+        . . e e e e e e e e e e e e . . 
+        . . . . . . e e e . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, GreenApple, -75, 0)
+    flyingSeed.setKind(SpriteKind.attack)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.healthAdd, function (sprite5, otherSprite2) {
     sprites.destroy(otherSprite2, effects.bubbles, 100)
@@ -260,6 +286,7 @@ let finalBoss: Sprite = null
 let lavaBlock = 0
 let projectile: Sprite = null
 let spawningList: Image[] = []
+let flyingSeed: Sprite = null
 let finalBossSpawned = false
 let jumpCount = 0
 let GreenApple: Sprite = null
@@ -385,7 +412,7 @@ scene.setBackgroundImage(img`
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     `)
-tiles.setCurrentTilemap(tilemap`level1`)
+tiles.setCurrentTilemap(tilemap`Runrunrun`)
 lavaRisingLevel(game.askForNumber("Lava Difficulty Level (0-easiest/9-hardest)", 1))
 let fallingSprite = game.askForNumber("Enemy Difficulty Level (0-easiest/9-hardest)", 1)
 GreenApple = sprites.create(assets.image`myImage`, SpriteKind.Player)
