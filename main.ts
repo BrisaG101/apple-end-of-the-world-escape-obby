@@ -5,6 +5,12 @@ namespace SpriteKind {
     export const biggestBaddestEnemy = SpriteKind.create()
     export const attack = SpriteKind.create()
 }
+/**
+ * https://arcade.makecode.com/#editor
+ */
+/**
+ * https://forum.makecode.com/t/projectile-making-problems/3071
+ */
 scene.onHitWall(SpriteKind.Player, function (sprite, location) {
     if (!(GreenApple.isHittingTile(CollisionDirection.Top))) {
         jumpCount = 0
@@ -40,6 +46,9 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
         flyingSeed.setKind(SpriteKind.attack)
     })
 })
+function projectileBulletThatFollows (spriteHit: Sprite, attackingSprite: Sprite, speed: number) {
+	
+}
 sprites.onOverlap(SpriteKind.Player, SpriteKind.healthAdd, function (sprite5, otherSprite2) {
     sprites.destroy(otherSprite2, effects.bubbles, 100)
     info.changeLifeBy(1)
