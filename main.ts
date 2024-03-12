@@ -275,9 +275,10 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile`, function (sprite2, l
     if (finalBossSpawned == false) {
         if (GreenApple.tileKindAt(TileDirection.Bottom, sprites.builtin.oceanSand14)) {
             finalBoss = sprites.create(assets.image`archnemesis`, SpriteKind.biggestBaddestEnemy)
-            finalBoss.setVelocity(0, 20)
+            finalBoss.ay = 800
+            finalBoss.setVelocity(10, 0)
             finalBoss.setFlag(SpriteFlag.GhostThroughWalls, false)
-            tiles.placeOnTile(finalBoss, tiles.getTileLocation(3, 12))
+            tiles.placeOnTile(finalBoss, tiles.getTileLocation(5, 20))
         }
     }
     finalBossSpawned = true
