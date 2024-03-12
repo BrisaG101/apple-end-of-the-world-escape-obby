@@ -1,29 +1,32 @@
-namespace SpriteKind {
-    export const healthAdd = SpriteKind.create()
-    export const mediumEnemy = SpriteKind.create()
-    export const hardestEnemy = SpriteKind.create()
-    export const biggestBaddestEnemy = SpriteKind.create()
-    export const attack = SpriteKind.create()
-}
+@namespace
+class SpriteKind:
+    healthAdd = SpriteKind.create()
+    mediumEnemy = SpriteKind.create()
+    hardestEnemy = SpriteKind.create()
+    biggestBaddestEnemy = SpriteKind.create()
+    attack = SpriteKind.create()
 
-scene.onHitWall(SpriteKind.Player, function on_hit_wall(sprite: Sprite, location: tiles.Location) {
-    
-    if (!GreenApple.isHittingTile(CollisionDirection.Top)) {
+def on_hit_wall(sprite, location):
+    global jumpCount
+    if not (GreenApple.is_hitting_tile(CollisionDirection.TOP)):
         jumpCount = 0
-    }
-    
-    if (GreenApple.isHittingTile(CollisionDirection.Left) || GreenApple.isHittingTile(CollisionDirection.Right)) {
+    if GreenApple.is_hitting_tile(CollisionDirection.LEFT) or GreenApple.is_hitting_tile(CollisionDirection.RIGHT):
         GreenApple.vy = 0
-    }
-    
-})
-sprites.onOverlap(SpriteKind.attack, SpriteKind.biggestBaddestEnemy, function on_on_overlap(sprite2: Sprite, otherSprite: Sprite) {
+scene.on_hit_wall(SpriteKind.player, on_hit_wall)
+
+def on_on_overlap(sprite2, otherSprite):
     sprites.destroy(sprite2, effects.fire, 100)
-    scaling.scaleByPercent(otherSprite, -10, ScaleDirection.Uniformly, ScaleAnchor.Middle)
-})
-controller.B.onEvent(ControllerButtonEvent.Pressed, function on_b_pressed() {
-    
-    flyingSeed = sprites.createProjectileFromSprite(img`
+    scaling.scale_by_percent(otherSprite,
+        -10,
+        ScaleDirection.UNIFORMLY,
+        ScaleAnchor.MIDDLE)
+sprites.on_overlap(SpriteKind.attack,
+    SpriteKind.biggestBaddestEnemy,
+    on_on_overlap)
+
+def on_b_pressed():
+    global flyingSeed
+    flyingSeed = sprites.create_projectile_from_sprite(img("""
             . . . . . . . . . . . . . . . . 
                     . . . . . . . . . . . . . . . . 
                     . . . . . . . . . . . . . . . . 
@@ -40,20 +43,27 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function on_b_pressed() {
                     . . . . . . . . . . . . . . . . 
                     . . . . . . . . . . . . . . . . 
                     . . . . . . . . . . . . . . . .
-        `, GreenApple, -75, 0)
-    flyingSeed.setKind(SpriteKind.attack)
-})
-sprites.onOverlap(SpriteKind.Player, SpriteKind.healthAdd, function on_on_overlap2(sprite5: Sprite, otherSprite2: Sprite) {
+        """),
+        GreenApple,
+        -75,
+        0)
+    flyingSeed.set_kind(SpriteKind.attack)
+controller.B.on_event(ControllerButtonEvent.PRESSED, on_b_pressed)
+
+def on_on_overlap2(sprite5, otherSprite2):
     sprites.destroy(otherSprite2, effects.bubbles, 100)
-    info.changeLifeBy(1)
-})
-function enemyLevel2(numEnemyLevel: number) {
-    
-    spawningList = [assets.image`
+    info.change_life_by(1)
+sprites.on_overlap(SpriteKind.player, SpriteKind.healthAdd, on_on_overlap2)
+
+def enemyLevel2(numEnemyLevel: number):
+    global spawningList, projectile
+    spawningList = [assets.image("""
             archnemesis
-        `, assets.image`
+        """),
+        assets.image("""
             rottenBanana
-        `, img`
+        """),
+        img("""
             . . . . . . . e c 7 . . . . . . 
                     . . . . e e e c 7 7 e e . . . . 
                     . . c e e e e c 7 e 2 2 e e . . 
@@ -70,7 +80,8 @@ function enemyLevel2(numEnemyLevel: number) {
                     . . 2 e e 2 2 2 2 2 4 4 2 e . . 
                     . . . 2 2 e e 4 4 4 2 e e . . . 
                     . . . . . 2 2 e e e e . . . . .
-        `, img`
+        """),
+        img("""
             4 4 4 . . 4 4 4 4 4 . . . . . . 
                     4 5 5 4 4 5 5 5 5 5 4 4 . . . . 
                     b 4 5 5 1 5 1 1 1 5 5 5 4 . . . 
@@ -87,7 +98,8 @@ function enemyLevel2(numEnemyLevel: number) {
                     . . . c 4 4 4 4 4 4 4 4 5 5 5 4 
                     . . . . c c b 4 4 4 b b 4 5 4 4 
                     . . . . . . c c c c c c b b 4 .
-        `, img`
+        """),
+        img("""
             . . 2 2 b b b b b . . . . . . . 
                     . 2 b 4 4 4 4 4 4 b . . . . . . 
                     2 2 4 4 4 4 d d 4 4 b . . . . . 
@@ -104,44 +116,40 @@ function enemyLevel2(numEnemyLevel: number) {
                     . . . . . . . . . . . c 1 d d b 
                     . . . . . . . . . . . c 1 b c . 
                     . . . . . . . . . . . . c c . .
-        `]
-    if (numEnemyLevel <= 3) {
-        for (let index = 0; index < 4; index++) {
+        """)]
+    if numEnemyLevel <= 3:
+        for index in range(4):
             spawningList.shift()
-        }
-        for (let index2 = 0; index2 < 30; index2++) {
-            projectile = sprites.createProjectileFromSide(spawningList._pickRandom(), 0, 60)
-            projectile.setKind(SpriteKind.healthAdd)
-            projectile.setFlag(SpriteFlag.GhostThroughWalls, true)
-            tiles.placeOnTile(projectile, tiles.getTileLocation(randint(0, 29), randint(0, 140)))
-        }
-    } else if (numEnemyLevel <= 7) {
-        for (let index3 = 0; index3 < 3; index3++) {
+        for index2 in range(30):
+            projectile = sprites.create_projectile_from_side(spawningList._pick_random(), 0, 60)
+            projectile.set_kind(SpriteKind.healthAdd)
+            projectile.set_flag(SpriteFlag.GHOST_THROUGH_WALLS, True)
+            tiles.place_on_tile(projectile,
+                tiles.get_tile_location(randint(0, 29), randint(0, 140)))
+    elif numEnemyLevel <= 7:
+        for index3 in range(3):
             spawningList.shift()
-        }
-        for (let index4 = 0; index4 < 60; index4++) {
-            projectile = sprites.createProjectileFromSide(spawningList._pickRandom(), 0, 60)
-            projectile.setKind(SpriteKind.mediumEnemy)
-            projectile.setFlag(SpriteFlag.GhostThroughWalls, true)
-            tiles.placeOnTile(projectile, tiles.getTileLocation(randint(0, 29), randint(0, 140)))
-        }
-    } else {
-        for (let index5 = 0; index5 < 80; index5++) {
-            projectile = sprites.createProjectileFromSide(spawningList._pickRandom(), 0, 60)
-            projectile.setKind(SpriteKind.hardestEnemy)
-            projectile.setFlag(SpriteFlag.GhostThroughWalls, true)
-            tiles.placeOnTile(projectile, tiles.getTileLocation(randint(0, 29), randint(0, 140)))
-        }
-    }
-    
-}
+        for index4 in range(60):
+            projectile = sprites.create_projectile_from_side(spawningList._pick_random(), 0, 60)
+            projectile.set_kind(SpriteKind.mediumEnemy)
+            projectile.set_flag(SpriteFlag.GHOST_THROUGH_WALLS, True)
+            tiles.place_on_tile(projectile,
+                tiles.get_tile_location(randint(0, 29), randint(0, 140)))
+    else:
+        for index5 in range(80):
+            projectile = sprites.create_projectile_from_side(spawningList._pick_random(), 0, 60)
+            projectile.set_kind(SpriteKind.hardestEnemy)
+            projectile.set_flag(SpriteFlag.GHOST_THROUGH_WALLS, True)
+            tiles.place_on_tile(projectile,
+                tiles.get_tile_location(randint(0, 29), randint(0, 140)))
 
-controller.A.onEvent(ControllerButtonEvent.Pressed, function on_a_pressed() {
-    
-    if (jumpCount < 2) {
+def on_a_pressed():
+    global jumpCount
+    if jumpCount < 2:
         jumpCount += 1
         GreenApple.vy = -150
-        animation.runImageAnimation(GreenApple, [img`
+        animation.run_image_animation(GreenApple,
+            [img("""
                     .............................
                                 .............................
                                 .............f...............
@@ -171,7 +179,8 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function on_a_pressed() {
                                 ..............f..............
                                 .............................
                                 .............................
-                `, img`
+                """),
+                img("""
                     .............................
                                 .............................
                                 .........ff..ff..............
@@ -201,7 +210,8 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function on_a_pressed() {
                                 ..........f..................
                                 .............................
                                 .............................
-                `, img`
+                """),
+                img("""
                     .............................
                                 .............................
                                 ..................f..........
@@ -231,86 +241,94 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function on_a_pressed() {
                                 ..............ff..ff.........
                                 .............................
                                 .............................
-                `], 100, false)
-    }
-    
-})
-sprites.onOverlap(SpriteKind.Player, SpriteKind.mediumEnemy, function on_on_overlap3(sprite4: Sprite, otherSprite3: Sprite) {
-    sprites.destroy(otherSprite3, effects.fire, 100)
-    info.changeLifeBy(-1)
-})
-sprites.onOverlap(SpriteKind.Player, SpriteKind.hardestEnemy, function on_on_overlap4(sprite6: Sprite, otherSprite32: Sprite) {
-    sprites.destroy(otherSprite32, effects.fire, 100)
-    info.changeLifeBy(-2)
-})
-scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardLava0, function on_overlap_tile(sprite3: Sprite, location3: tiles.Location) {
-    if (controller.up.isPressed()) {
-        GreenApple.vy = -50
-    } else {
-        GreenApple.vy = 50
-    }
-    
-    timer.throttle("action", 1000, function on_throttle() {
-        info.changeLifeBy(-1)
-    })
-})
-function lavaRisingLevel(numLavaLevel: number) {
-    
-    if (numLavaLevel <= 3) {
-        lavaBlock += 1
-        for (let index6 = 0; index6 < 31; index6++) {
-            tiles.setTileAt(tiles.getTileLocation(index6, lavaBlock * -1 + 154), sprites.dungeon.hazardLava0)
-            tiles.setWallAt(tiles.getTileLocation(index6, lavaBlock * -1 + 154), false)
-        }
-    } else if (numLavaLevel <= 7) {
-        lavaBlock += 5
-        for (let index7 = 0; index7 < 31; index7++) {
-            tiles.setTileAt(tiles.getTileLocation(index7, lavaBlock * -1 + 154), sprites.dungeon.hazardLava0)
-            tiles.setWallAt(tiles.getTileLocation(index7, lavaBlock * -1 + 154), false)
-        }
-    } else {
-        lavaBlock += 10
-        for (let index8 = 0; index8 < 31; index8++) {
-            tiles.setTileAt(tiles.getTileLocation(index8, lavaBlock * -1 + 154), sprites.dungeon.hazardLava0)
-            tiles.setWallAt(tiles.getTileLocation(index8, lavaBlock * -1 + 154), false)
-        }
-    }
-    
-}
+                """)],
+            100,
+            False)
+controller.A.on_event(ControllerButtonEvent.PRESSED, on_a_pressed)
 
-scene.onOverlapTile(SpriteKind.Player, assets.tile`
-        myTile
-    `, function on_overlap_tile2(sprite22: Sprite, location2: tiles.Location) {
+def on_on_overlap3(sprite4, otherSprite3):
+    sprites.destroy(otherSprite3, effects.fire, 100)
+    info.change_life_by(-1)
+sprites.on_overlap(SpriteKind.player, SpriteKind.mediumEnemy, on_on_overlap3)
+
+def on_on_overlap4(sprite6, otherSprite32):
+    sprites.destroy(otherSprite32, effects.fire, 100)
+    info.change_life_by(-2)
+sprites.on_overlap(SpriteKind.player, SpriteKind.hardestEnemy, on_on_overlap4)
+
+def on_overlap_tile(sprite3, location3):
+    if controller.up.is_pressed():
+        GreenApple.vy = -50
+    else:
+        GreenApple.vy = 50
     
-    if (finalBossSpawned == false) {
-        if (GreenApple.tileKindAt(TileDirection.Bottom, sprites.castle.tilePath5)) {
-            finalBoss = sprites.create(assets.image`
+    def on_throttle():
+        info.change_life_by(-1)
+    timer.throttle("action", 1000, on_throttle)
+    
+scene.on_overlap_tile(SpriteKind.player,
+    sprites.dungeon.hazard_lava0,
+    on_overlap_tile)
+
+def lavaRisingLevel(numLavaLevel: number):
+    global lavaBlock
+    if numLavaLevel <= 3:
+        lavaBlock += 1
+        for index6 in range(31):
+            tiles.set_tile_at(tiles.get_tile_location(index6, lavaBlock * -1 + 154),
+                sprites.dungeon.hazard_lava0)
+            tiles.set_wall_at(tiles.get_tile_location(index6, lavaBlock * -1 + 154), False)
+    elif numLavaLevel <= 7:
+        lavaBlock += 5
+        for index7 in range(31):
+            tiles.set_tile_at(tiles.get_tile_location(index7, lavaBlock * -1 + 154),
+                sprites.dungeon.hazard_lava0)
+            tiles.set_wall_at(tiles.get_tile_location(index7, lavaBlock * -1 + 154), False)
+    else:
+        lavaBlock += 10
+        for index8 in range(31):
+            tiles.set_tile_at(tiles.get_tile_location(index8, lavaBlock * -1 + 154),
+                sprites.dungeon.hazard_lava0)
+            tiles.set_wall_at(tiles.get_tile_location(index8, lavaBlock * -1 + 154), False)
+
+def on_overlap_tile2(sprite22, location2):
+    global finalBoss, finalBossSpawned
+    if finalBossSpawned == False:
+        if GreenApple.tile_kind_at(TileDirection.BOTTOM, sprites.castle.tile_path5):
+            finalBoss = sprites.create(assets.image("""
                     archnemesis
-                `, SpriteKind.biggestBaddestEnemy)
+                """),
+                SpriteKind.biggestBaddestEnemy)
             finalBoss.ay = 800
-            finalBoss.setFlag(SpriteFlag.GhostThroughWalls, false)
-            tiles.placeOnTile(finalBoss, tiles.getTileLocation(5, 20))
+            finalBoss.set_flag(SpriteFlag.GHOST_THROUGH_WALLS, False)
+            tiles.place_on_tile(finalBoss, tiles.get_tile_location(5, 20))
             finalBoss.vx += 10
-        }
-        
-    }
+    finalBossSpawned = True
+scene.on_overlap_tile(SpriteKind.player,
+    assets.tile("""
+        myTile
+    """),
+    on_overlap_tile2)
+
+def on_on_overlap5(sprite7, otherSprite4):
     
-    finalBossSpawned = true
-})
-sprites.onOverlap(SpriteKind.Player, SpriteKind.biggestBaddestEnemy, function on_on_overlap5(sprite7: Sprite, otherSprite4: Sprite) {
-    timer.throttle("action", 1000, function on_throttle2() {
-        info.changeLifeBy(-10)
-    })
-})
-let finalBoss : Sprite = null
-let lavaBlock = 0
-let projectile : Sprite = null
-let spawningList : Image[] = []
-let flyingSeed : Sprite = null
-let finalBossSpawned = false
-let jumpCount = 0
-let GreenApple : Sprite = null
-scene.setBackgroundImage(img`
+    def on_throttle2():
+        info.change_life_by(-10)
+    timer.throttle("action", 1000, on_throttle2)
+    
+sprites.on_overlap(SpriteKind.player,
+    SpriteKind.biggestBaddestEnemy,
+    on_on_overlap5)
+
+finalBoss: Sprite = None
+lavaBlock = 0
+projectile: Sprite = None
+spawningList: List[Image] = []
+flyingSeed: Sprite = None
+finalBossSpawned = False
+jumpCount = 0
+GreenApple: Sprite = None
+scene.set_background_image(img("""
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
         ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
         ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
@@ -431,26 +449,28 @@ scene.setBackgroundImage(img`
         ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
         ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
         ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
-`)
-tiles.setCurrentTilemap(tilemap`
+"""))
+tiles.set_current_tilemap(tilemap("""
     Runrunrun
-`)
-lavaRisingLevel(game.askForNumber("Lava Difficulty Level (0-easiest/9-hardest)", 1))
-let fallingSprite = game.askForNumber("Enemy Difficulty Level (0-easiest/9-hardest)", 1)
-GreenApple = sprites.create(assets.image`
+"""))
+lavaRisingLevel(game.ask_for_number("Lava Difficulty Level (0-easiest/9-hardest)", 1))
+fallingSprite = game.ask_for_number("Enemy Difficulty Level (0-easiest/9-hardest)", 1)
+GreenApple = sprites.create(assets.image("""
     myImage
-`, SpriteKind.Player)
-tiles.placeOnTile(GreenApple, tiles.getTileLocation(24, 26))
-controller.moveSprite(GreenApple, 100, 0)
+"""), SpriteKind.player)
+tiles.place_on_tile(GreenApple, tiles.get_tile_location(24, 26))
+controller.move_sprite(GreenApple, 100, 0)
 GreenApple.ay = 300
-GreenApple.setStayInScreen(true)
-scene.cameraFollowSprite(GreenApple)
+GreenApple.set_stay_in_screen(True)
+scene.camera_follow_sprite(GreenApple)
 jumpCount = 0
-info.setLife(100)
-finalBossSpawned = false
-game.onUpdateInterval(2000, function on_update_interval() {
+info.set_life(100)
+finalBossSpawned = False
+
+def on_update_interval():
     enemyLevel2(fallingSprite)
-})
-game.onUpdateInterval(1000, function on_update_interval2() {
+game.on_update_interval(2000, on_update_interval)
+
+def on_update_interval2():
     lavaRisingLevel(1)
-})
+game.on_update_interval(1000, on_update_interval2)
