@@ -18,25 +18,27 @@ sprites.onOverlap(SpriteKind.attack, SpriteKind.biggestBaddestEnemy, function (s
     scaling.scaleByPercent(otherSprite, -10, ScaleDirection.Uniformly, ScaleAnchor.Middle)
 })
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
-    flyingSeed = sprites.createProjectileFromSprite(img`
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . e e e . . . . . . . . . 
-        . e e e e e e e e e . . . . . . 
-        . e e e e e e e e e e e e e e . 
-        . e e e e e e e e e e e e e e e 
-        . . e e e e e e e e e e e e . . 
-        . . . . . . e e e . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        `, GreenApple, -75, 0)
-    flyingSeed.setKind(SpriteKind.attack)
+    timer.throttle("action", 1000, function () {
+        flyingSeed = sprites.createProjectileFromSprite(img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . e e e . . . . . . . . . 
+            . e e e e e e e e e . . . . . . 
+            . e e e e e e e e e e e e e e . 
+            . e e e e e e e e e e e e e e e 
+            . . e e e e e e e e e e e e . . 
+            . . . . . . e e e . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, GreenApple, -75, 0)
+        flyingSeed.setKind(SpriteKind.attack)
+    })
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.healthAdd, function (sprite5, otherSprite2) {
     sprites.destroy(otherSprite2, effects.bubbles, 100)
@@ -282,6 +284,11 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile`, function (sprite2, l
         }
     }
     finalBossSpawned = true
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.biggestBaddestEnemy, function (sprite, otherSprite) {
+    timer.throttle("action", 1000, function () {
+        info.changeLifeBy(-10)
+    })
 })
 let finalBoss: Sprite = null
 let lavaBlock = 0
