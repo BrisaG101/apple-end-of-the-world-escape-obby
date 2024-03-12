@@ -273,7 +273,7 @@ function lavaRisingLevel (numLavaLevel: number) {
 }
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile`, function (sprite2, location2) {
     if (finalBossSpawned == false) {
-        if (GreenApple.tileKindAt(TileDirection.Bottom, sprites.builtin.oceanSand14)) {
+        if (GreenApple.tileKindAt(TileDirection.Bottom, sprites.castle.tilePath5)) {
             finalBoss = sprites.create(assets.image`archnemesis`, SpriteKind.biggestBaddestEnemy)
             finalBoss.ay = 800
             finalBoss.setVelocity(10, 0)
@@ -417,7 +417,7 @@ tiles.setCurrentTilemap(tilemap`Runrunrun`)
 lavaRisingLevel(game.askForNumber("Lava Difficulty Level (0-easiest/9-hardest)", 1))
 let fallingSprite = game.askForNumber("Enemy Difficulty Level (0-easiest/9-hardest)", 1)
 GreenApple = sprites.create(assets.image`myImage`, SpriteKind.Player)
-tiles.placeOnTile(GreenApple, tiles.getTileLocation(26, 134))
+tiles.placeOnTile(GreenApple, tiles.getTileLocation(23, 26))
 controller.moveSprite(GreenApple, 100, 0)
 GreenApple.ay = 300
 GreenApple.setStayInScreen(true)
