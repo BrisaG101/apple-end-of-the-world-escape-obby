@@ -280,14 +280,20 @@ function lavaRisingLevel (numLavaLevel: number) {
         }
     }
 }
+function distance (x1: number, x2: number, y1: number, y2: number) {
+    return Math.sqrt((y1 - y2) ** 2 + (x1 - x2) ** 2)
+}
+function greenAppleInRange (sprite1: Sprite, sprite2: Sprite, range: number) {
+    return distance(sprite1.x, sprite2.x, sprite1.y, sprite2.y) <= range
+}
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile`, function (sprite2, location2) {
     if (finalBossSpawned == false) {
         if (GreenApple.tileKindAt(TileDirection.Bottom, sprites.castle.tilePath5)) {
-            finalBoss = sprites.create(assets.image`archnemesis`, SpriteKind.biggestBaddestEnemy)
-            finalBoss.ay = 800
-            finalBoss.setVelocity(10, 0)
-            finalBoss.setFlag(SpriteFlag.GhostThroughWalls, false)
-            tiles.placeOnTile(finalBoss, tiles.getTileLocation(5, 20))
+            archNemesis = sprites.create(assets.image`archnemesis`, SpriteKind.biggestBaddestEnemy)
+            archNemesis.ay = 800
+            archNemesis.setVelocity(10, 0)
+            archNemesis.setFlag(SpriteFlag.GhostThroughWalls, false)
+            tiles.placeOnTile(archNemesis, tiles.getTileLocation(5, 20))
         }
     }
     finalBossSpawned = true
@@ -297,7 +303,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.biggestBaddestEnemy, function (s
         info.changeLifeBy(-10)
     })
 })
-let finalBoss: Sprite = null
+let archNemesis: Sprite = null
 let lavaBlock = 0
 let projectile: Sprite = null
 let spawningList: Image[] = []
@@ -446,4 +452,9 @@ game.onUpdateInterval(2000, function () {
 })
 game.onUpdateInterval(1000, function () {
     lavaRisingLevel(1)
+})
+game.onUpdateInterval(200, function () {
+    if (greenAppleInRange(GreenApple, archNemesis, 60)) {
+        projectileBulletThatFollows(GreenApple, archNemesis, 30)
+    }
 })
