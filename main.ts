@@ -6,9 +6,6 @@ namespace SpriteKind {
     export const attack = SpriteKind.create()
 }
 /**
- * https://arcade.makecode.com/#editor
- */
-/**
  * https://forum.makecode.com/t/projectile-making-problems/3071
  */
 scene.onHitWall(SpriteKind.Player, function (sprite, location) {
