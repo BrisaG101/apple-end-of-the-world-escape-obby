@@ -44,7 +44,8 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     })
 })
 function projectileBulletThatFollows (spriteHit: Sprite, attackingSprite: Sprite, speed: number) {
-	
+    angleToTarget = Math.atan2(spriteHit.y - attackingSprite.y, spriteHit.x - attackingSprite.x)
+    projectile2 = sprites.createProjectileFromSprite(assets.image`caca`, attackingSprite, Math.cos(angleToTarget) * speed, Math.sin(angleToTarget) * speed)
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.healthAdd, function (sprite5, otherSprite2) {
     sprites.destroy(otherSprite2, effects.bubbles, 100)
@@ -300,6 +301,8 @@ let finalBoss: Sprite = null
 let lavaBlock = 0
 let projectile: Sprite = null
 let spawningList: Image[] = []
+let projectile2: Sprite = null
+let angleToTarget = 0
 let flyingSeed: Sprite = null
 let finalBossSpawned = false
 let jumpCount = 0

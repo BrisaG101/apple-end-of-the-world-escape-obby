@@ -14,6 +14,11 @@
         "mimeType": "image/x-mkcd-f4",
         "displayName": "archnemesis"
     },
+    "image3": {
+        "data": "hwQQABAAAAAAAAAAAAAA8AAP7g7gAAAP8ADeDu7gAAAAAO7u7t0OAAAATiIu7Q4AAO5OQtQtBA4A7k5C3STkDgDuREJNROQOAAAiTEQi4g4AAN4i3e7uAADg3t3d7g4A8ODd3O4OAAAP4M4O7u4ADwAA7g7uDvAAAADgAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "caca"
+    },
     "*": {
         "mimeType": "image/x-mkcd-f4",
         "dataEncoding": "base64",

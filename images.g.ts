@@ -157,6 +157,25 @@ fff77ccddddddddddddddddcccc77cccffffff77cccddddddcccccdd77fffffff7777dddeeeeccdd
 ....................................................................................................
 ....................................................................................................
 `;
+            case "image3":
+            case "caca":return img`
+. . . . . . . . . . . . f . . . 
+. . f . . . . . . . . f . . . . 
+. f . . . e e e . . . . . . . . 
+. . . . . e e e . . e e e . . . 
+. e e e e e e 4 2 e e d e e . . 
+. e d e 4 4 4 4 2 d d d c e e . 
+. e e e 2 2 2 2 c 2 d c e e . . 
+. . . e 2 4 4 4 4 2 d d . . . . 
+. . e e e 4 d d 4 d d e e e . . 
+. e e e 2 d d 4 4 d d e e e . . 
+. . . d d d 4 4 2 e e e e e . . 
+. . e d e 2 2 4 2 e e . e . . . 
+. . . e e 4 4 4 2 e e . . . . . 
+. . . . . . e e e e . . . f . . 
+. f . . . e e e e . . . f . . . 
+f . . . . . . . . . . . . . . . 
+`;
         }
         return null;
     })
