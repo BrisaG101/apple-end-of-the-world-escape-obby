@@ -5,6 +5,9 @@ namespace SpriteKind {
     export const biggestBaddestEnemy = SpriteKind.create()
     export const attack = SpriteKind.create()
 }
+/**
+ * https://forum.makecode.com/t/projectile-making-problems/3071
+ */
 scene.onHitWall(SpriteKind.Player, function (sprite, location) {
     if (!(GreenApple.isHittingTile(CollisionDirection.Top))) {
         jumpCount = 0
@@ -44,7 +47,7 @@ function projectileBulletThatFollows (spriteHit: Sprite, attackingSprite: Sprite
     finalBossAttack = sprites.create(assets.image`caca`, SpriteKind.Projectile)
     finalBossAttack.x = attackingSprite.x
     finalBossAttack.y = attackingSprite.y
-    tempSpeed = distance(spriteHit.x - attackingSprite.x, 1, spriteHit.y - attackingSprite.y, 1)
+    tempSpeed = distance(spriteHit.x - attackingSprite.x, 0, spriteHit.y - attackingSprite.y, 0)
     normalizingRatio = speed / tempSpeed
     finalBossAttack.vx = (spriteHit.x - attackingSprite.x) * normalizingRatio
     finalBossAttack.vy = (spriteHit.y - attackingSprite.y) * normalizingRatio
@@ -291,13 +294,9 @@ function greenAppleInRange (sprite1: Sprite, sprite2: Sprite, range: number) {
     }
     return false
 }
-/**
- * https://forum.makecode.com/t/projectile-making-problems/3071
- */
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile`, function (sprite2, location2) {
     if (finalBossSpawned == false) {
         if (GreenApple.tileKindAt(TileDirection.Bottom, sprites.castle.tilePath5)) {
-            archNemesis = sprites.create(assets.image`archnemesis`, SpriteKind.biggestBaddestEnemy)
             archNemesis.ay = 800
             archNemesis.setVelocity(10, 0)
             archNemesis.setFlag(SpriteFlag.GhostThroughWalls, false)
@@ -311,7 +310,6 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.biggestBaddestEnemy, function (s
         info.changeLifeBy(-10)
     })
 })
-let archNemesis: Sprite = null
 let lavaBlock = 0
 let projectile: Sprite = null
 let spawningList: Image[] = []
@@ -321,6 +319,7 @@ let finalBossAttack: Sprite = null
 let flyingSeed: Sprite = null
 let finalBossSpawned = false
 let jumpCount = 0
+let archNemesis: Sprite = null
 let GreenApple: Sprite = null
 scene.setBackgroundImage(img`
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
@@ -452,6 +451,7 @@ tiles.placeOnTile(GreenApple, tiles.getTileLocation(23, 26))
 controller.moveSprite(GreenApple, 100, 0)
 GreenApple.ay = 300
 GreenApple.setStayInScreen(true)
+archNemesis = sprites.create(assets.image`archnemesis`, SpriteKind.biggestBaddestEnemy)
 scene.cameraFollowSprite(GreenApple)
 jumpCount = 0
 info.setLife(30)
