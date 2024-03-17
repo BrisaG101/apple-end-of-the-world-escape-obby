@@ -5,9 +5,6 @@ namespace SpriteKind {
     export const biggestBaddestEnemy = SpriteKind.create()
     export const attack = SpriteKind.create()
 }
-/**
- * https://forum.makecode.com/t/projectile-making-problems/3071
- */
 scene.onHitWall(SpriteKind.Player, function (sprite, location) {
     if (!(GreenApple.isHittingTile(CollisionDirection.Top))) {
         jumpCount = 0
@@ -294,6 +291,9 @@ function greenAppleInRange (sprite1: Sprite, sprite2: Sprite, range: number) {
     }
     return false
 }
+/**
+ * https://forum.makecode.com/t/projectile-making-problems/3071
+ */
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile`, function (sprite2, location2) {
     if (finalBossSpawned == false) {
         if (GreenApple.tileKindAt(TileDirection.Bottom, sprites.castle.tilePath5)) {
