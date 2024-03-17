@@ -5,9 +5,6 @@ namespace SpriteKind {
     export const biggestBaddestEnemy = SpriteKind.create()
     export const attack = SpriteKind.create()
 }
-/**
- * https://forum.makecode.com/t/projectile-making-problems/3071
- */
 scene.onHitWall(SpriteKind.Player, function (sprite, location) {
     if (!(GreenApple.isHittingTile(CollisionDirection.Top))) {
         jumpCount = 0
@@ -44,8 +41,13 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     })
 })
 function projectileBulletThatFollows (spriteHit: Sprite, attackingSprite: Sprite, speed: number) {
-    angleToTarget = Math.atan2(spriteHit.y - attackingSprite.y, spriteHit.x - attackingSprite.x)
-    projectile2 = sprites.createProjectileFromSprite(assets.image`caca`, attackingSprite, Math.cos(angleToTarget) * speed, Math.sin(angleToTarget) * speed)
+    finalBossAttack = sprites.create(assets.image`caca`, SpriteKind.Projectile)
+    finalBossAttack.x = attackingSprite.x
+    finalBossAttack.y = attackingSprite.y
+    tempSpeed = distance(spriteHit.x - attackingSprite.x, 1, spriteHit.y - attackingSprite.y, 1)
+    normalizingRatio = speed / tempSpeed
+    finalBossAttack.vx = (spriteHit.x - attackingSprite.x) * normalizingRatio
+    finalBossAttack.vy = (spriteHit.y - attackingSprite.y) * 0
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.healthAdd, function (sprite5, otherSprite2) {
     sprites.destroy(otherSprite2, effects.bubbles, 100)
@@ -281,11 +283,17 @@ function lavaRisingLevel (numLavaLevel: number) {
     }
 }
 function distance (x1: number, x2: number, y1: number, y2: number) {
-    return Math.sqrt((y1 - y2) ** 2 + (x1 - x2) ** 2)
+    return Math.sqrt((y1 - y2) * (y1 - y2) + (x1 - x2) * (x1 - x2))
 }
 function greenAppleInRange (sprite1: Sprite, sprite2: Sprite, range: number) {
-    return distance(sprite1.x, sprite2.x, sprite1.y, sprite2.y) <= range
+    if (distance(sprite1.x, sprite2.x, sprite1.y, sprite2.y) <= range) {
+        return true
+    }
+    return false
 }
+/**
+ * https://forum.makecode.com/t/projectile-making-problems/3071
+ */
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile`, function (sprite2, location2) {
     if (finalBossSpawned == false) {
         if (GreenApple.tileKindAt(TileDirection.Bottom, sprites.castle.tilePath5)) {
@@ -307,8 +315,9 @@ let archNemesis: Sprite = null
 let lavaBlock = 0
 let projectile: Sprite = null
 let spawningList: Image[] = []
-let projectile2: Sprite = null
-let angleToTarget = 0
+let normalizingRatio = 0
+let tempSpeed = 0
+let finalBossAttack: Sprite = null
 let flyingSeed: Sprite = null
 let finalBossSpawned = false
 let jumpCount = 0
