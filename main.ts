@@ -21,7 +21,7 @@ sprites.onOverlap(SpriteKind.attack, SpriteKind.biggestBaddestEnemy, function (s
     scaling.scaleByPercent(otherSprite, -10, ScaleDirection.Uniformly, ScaleAnchor.Middle)
 })
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
-    timer.throttle("action", 500, function () {
+    timer.throttle("action", 1000, function () {
         flyingSeed = sprites.createProjectileFromSprite(img`
             . . . . . . . . . . . . . . . . 
             . . . . . . . . . . . . . . . . 
