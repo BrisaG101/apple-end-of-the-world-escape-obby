@@ -264,6 +264,10 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardLava0, function (sp
         info.changeLifeBy(-1)
     })
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Projectile, function (sprite, otherSprite) {
+    sprites.destroy(otherSprite, effects.fire, 100)
+    info.changeLifeBy(-0.01)
+})
 function lavaRisingLevel (numLavaLevel: number) {
     if (numLavaLevel <= 3) {
         lavaBlock += 1
