@@ -450,7 +450,7 @@ scene.setBackgroundImage(img`
 tiles.setCurrentTilemap(tilemap`Runrunrun`)
 lavaRisingLevel(game.askForNumber("Lava Difficulty Level (0-easiest/9-hardest)", 1))
 let fallingSprite = game.askForNumber("Enemy Difficulty Level (0-easiest/9-hardest)", 1)
-GreenApple = sprites.create(assets.image`myImage`, SpriteKind.Player)
+GreenApple = sprites.create(assets.image`greenApple`, SpriteKind.Player)
 tiles.placeOnTile(GreenApple, tiles.getTileLocation(23, 26))
 controller.moveSprite(GreenApple, 100, 0)
 GreenApple.ay = 300
