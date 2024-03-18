@@ -7,6 +7,9 @@ namespace SpriteKind {
     export const exit = SpriteKind.create()
     export const escape = SpriteKind.create()
 }
+/**
+ * The code for Scaling functionality was made freely available by: https://github.com/microsoft/pxt-common-packages/blob/v11/libs/sprite-scaling/docs/reference/sprites/scaling/scale-by-pixels.md
+ */
 scene.onHitWall(SpriteKind.Player, function (sprite, location) {
     if (!(GreenApple.isHittingTile(CollisionDirection.Top))) {
         jumpCount = 0
@@ -287,6 +290,9 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Projectile, function (sprite, ot
     sprites.destroy(otherSprite, effects.fire, 100)
     info.changeLifeBy(-0.01)
 })
+/**
+ * Most of the lava coding was made freely available by https://arcade.makecode.com/35572-32924-30681-92459, @Eden264
+ */
 function lavaRisingLevel (numLavaLevel: number) {
     if (numLavaLevel <= 3) {
         lavaBlock += 1
@@ -1708,6 +1714,14 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.biggestBaddestEnemy, function (s
         info.changeLifeBy(-10)
     })
 })
+/**
+ * The code for Timer functionality was made freely available by: 
+ * 
+ * https://github.com/microsoft/arcade-timers
+ */
+/**
+ * Some code has been provided as starter code by my teacher, I have my teachers examples of basic coding in my project, it made me animate my sprites, and made my sprite be able to double jump
+ */
 let exitRide: Sprite = null
 let lavaBlock = 0
 let projectile: Sprite = null
