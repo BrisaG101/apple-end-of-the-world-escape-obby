@@ -46,7 +46,9 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     })
 })
 /**
- * https://forum.makecode.com/t/projectile-making-problems/3071
+ * Most of the Projectile that follows coding was made freely available by: 
+ * 
+ * https://arcade.makecode.com/79345-65381-79014-11412, @livcheerful
  */
 function projectileBulletThatFollows (spriteHit: Sprite, attackingSprite: Sprite, speed: number) {
     finalBossAttack = sprites.create(assets.image`caca`, SpriteKind.Projectile)
