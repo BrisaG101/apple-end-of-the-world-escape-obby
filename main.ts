@@ -8,6 +8,11 @@ namespace SpriteKind {
     export const escape = SpriteKind.create()
 }
 /**
+ * The code for Timer functionality was made freely available by: 
+ * 
+ * https://github.com/microsoft/arcade-timers
+ */
+/**
  * The code for Scaling functionality was made freely available by: https://github.com/microsoft/pxt-common-packages/blob/v11/libs/sprite-scaling/docs/reference/sprites/scaling/scale-by-pixels.md
  */
 scene.onHitWall(SpriteKind.Player, function (sprite, location) {
@@ -1716,11 +1721,6 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.biggestBaddestEnemy, function (s
         info.changeLifeBy(-10)
     })
 })
-/**
- * The code for Timer functionality was made freely available by: 
- * 
- * https://github.com/microsoft/arcade-timers
- */
 /**
  * Some code has been provided as starter code by my teacher, I have my teachers examples of basic coding in my project, it made me animate my sprites, and made my sprite be able to double jump
  */
