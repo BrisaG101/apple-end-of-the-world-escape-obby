@@ -60,43 +60,60 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.healthAdd, function (sprite5, ot
 })
 function enemyLevel2 (numEnemyLevel: number) {
     spawningList = [
-    assets.image`archnemesis`,
+    img`
+        . . . . . . b b b b a a . . . . 
+        . . . . b b d e e 3 3 3 a a . . 
+        . . . b e 7 7 e e e e 3 3 a a . 
+        . . b d 7 7 e 3 3 e e 3 3 3 a . 
+        . b e e 7 e e 3 3 e 3 3 3 3 a b 
+        . b 3 f 3 7 3 a a f 3 3 3 3 a b 
+        b 7 7 7 7 7 a a 3 e e 3 d 7 7 b 
+        b e e e f f a 3 f f e 7 f e 4 b 
+        b e e 7 7 f e f f 3 7 7 7 e 4 e 
+        a e e e 7 f f f 7 7 e e e 7 4 e 
+        a 3 e e e f f f e e 7 e 7 7 e . 
+        a a 3 3 3 d d d a e 7 e 4 e e . 
+        . e a a a a a a 4 4 4 7 e e . . 
+        . . e e b b 4 4 4 4 b 7 e . . . 
+        . . . e e e e e e e e . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `,
     assets.image`rottenBanana`,
     img`
         . . . . . . . e c 7 . . . . . . 
         . . . . e e e c 7 7 e e . . . . 
         . . c e e e e c 7 e 2 2 e e . . 
         . c e e e e e c 6 e e 2 2 2 e . 
-        . c e e e 2 e c c 2 4 5 4 2 e . 
-        c e e e 2 2 2 2 2 2 4 5 5 2 2 e 
-        c e e 2 2 2 2 2 2 2 2 4 4 2 2 e 
-        c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
-        c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
-        c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
-        c e e 2 2 2 2 2 2 2 2 2 2 4 2 e 
-        . e e e 2 2 2 2 2 2 2 2 2 4 e . 
-        . 2 e e 2 2 2 2 2 2 2 2 4 2 e . 
-        . . 2 e e 2 2 2 2 2 4 4 2 e . . 
-        . . . 2 2 e e 4 4 4 2 e e . . . 
-        . . . . . 2 2 e e e e . . . . . 
+        . c 7 e e 2 e c c 2 4 5 4 2 e . 
+        c e 7 7 2 2 2 2 2 2 4 5 5 2 2 e 
+        7 e 7 7 f 2 2 2 2 2 f 4 4 2 2 e 
+        7 e 7 f 2 2 2 2 2 2 2 2 2 2 2 e 
+        7 7 7 f 2 2 2 2 2 2 f f 2 2 2 e 
+        7 e 7 f f 2 2 2 2 f f 2 2 e e e 
+        c e e e f f f f f f 2 2 2 e 7 e 
+        . e d e 7 7 2 2 2 2 2 2 2 e e . 
+        . e e e 7 e e e e e e e 7 e e . 
+        . . 2 e e f d e e e 4 4 2 e . . 
+        . . . 2 e 7 7 e 7 e 7 e e . . . 
+        . . . . . d d e e 7 7 . . . . . 
         `,
     img`
         4 4 4 . . 4 4 4 4 4 . . . . . . 
-        4 5 5 4 4 5 5 5 5 5 4 4 . . . . 
-        b 4 5 5 1 5 1 1 1 5 5 5 4 . . . 
-        . b 5 5 5 5 1 1 5 5 1 1 5 4 . . 
-        . b d 5 5 5 5 5 5 5 5 1 1 5 4 . 
-        b 4 5 5 5 5 5 5 5 5 5 5 1 5 4 . 
-        c d 5 5 5 5 5 5 5 5 5 5 5 5 5 4 
-        c d 4 5 5 5 5 5 5 5 5 5 5 1 5 4 
-        c 4 5 5 5 d 5 5 5 5 5 5 5 5 5 4 
-        c 4 d 5 4 5 d 5 5 5 5 5 5 5 5 4 
-        . c 4 5 5 5 5 d d d 5 5 5 5 5 b 
-        . c 4 d 5 4 5 d 4 4 d 5 5 5 4 c 
-        . . c 4 4 d 4 4 4 4 4 d d 5 d c 
-        . . . c 4 4 4 4 4 4 4 4 5 5 5 4 
-        . . . . c c b 4 4 4 b b 4 5 4 4 
-        . . . . . . c c c c c c b b 4 . 
+        4 5 5 7 4 5 5 5 5 5 4 4 . . . . 
+        b 4 5 7 7 7 1 1 1 5 5 5 4 . . . 
+        . b 5 7 7 7 1 1 5 5 1 1 5 4 . . 
+        . b 7 7 5 5 5 5 5 5 5 1 1 5 4 . 
+        b 4 e e 5 5 f 5 5 5 5 5 1 f 4 . 
+        c e e 5 7 5 5 5 5 5 5 5 5 5 5 4 
+        c d e e f f 5 5 5 5 5 5 5 1 5 f 
+        c 4 5 7 e f f 5 5 5 5 5 5 5 f f 
+        c 4 7 7 e 5 f f 5 5 5 5 5 f f 4 
+        . c e e 7 7 7 f f f f f f f 5 b 
+        . c 4 e e e e e 4 7 d 5 5 5 4 c 
+        . . c 4 7 e e e 7 7 7 7 d 5 d c 
+        . . . c 4 e e 4 7 7 e 4 7 5 5 4 
+        . . . . c c e e e e e 7 7 5 4 4 
+        . . . . . . c c c c c e b b 4 . 
         `,
     img`
         . . 2 2 b b b b b . . . . . . . 
@@ -105,10 +122,10 @@ function enemyLevel2 (numEnemyLevel: number) {
         2 b 4 4 4 4 4 4 d 4 b . . . . . 
         2 b 4 4 4 4 4 4 4 d 4 b . . . . 
         2 b 4 4 4 4 4 4 4 4 4 b . . . . 
-        2 b 4 4 4 4 4 4 4 4 4 e . . . . 
-        2 2 b 4 4 4 4 4 4 4 b e . . . . 
-        . 2 b b b 4 4 4 b b b e . . . . 
-        . . e b b b b b b b e e . . . . 
+        f b 4 4 4 4 4 4 4 f 4 e . . . . 
+        2 2 b f 4 4 4 4 4 4 b e . . . . 
+        . 2 b f b 4 4 f b b b e . . . . 
+        . . e b f f f f b b e e . . . . 
         . . . e e b 4 4 b e e e b . . . 
         . . . . . e e e e e e b d b b . 
         . . . . . . . . . . . b 1 1 1 b 
