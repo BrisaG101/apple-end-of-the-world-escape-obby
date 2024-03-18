@@ -7,9 +7,6 @@ namespace SpriteKind {
     export const exit = SpriteKind.create()
     export const escape = SpriteKind.create()
 }
-/**
- * https://forum.makecode.com/t/projectile-making-problems/3071
- */
 scene.onHitWall(SpriteKind.Player, function (sprite, location) {
     if (!(GreenApple.isHittingTile(CollisionDirection.Top))) {
         jumpCount = 0
@@ -45,6 +42,9 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
         flyingSeed.setKind(SpriteKind.attack)
     })
 })
+/**
+ * https://forum.makecode.com/t/projectile-making-problems/3071
+ */
 function projectileBulletThatFollows (spriteHit: Sprite, attackingSprite: Sprite, speed: number) {
     finalBossAttack = sprites.create(assets.image`caca`, SpriteKind.Projectile)
     finalBossAttack.x = attackingSprite.x
@@ -1830,8 +1830,9 @@ scene.setBackgroundImage(img`
 tiles.setCurrentTilemap(tilemap`Runrunrun`)
 lavaRisingLevel(game.askForNumber("Lava Difficulty Level (0-easiest/9-hardest)", 1))
 let fallingSprite = game.askForNumber("Enemy Difficulty Level (0-easiest/9-hardest)", 1)
+game.splash("Press B to attack, A to jump")
 GreenApple = sprites.create(assets.image`greenApple`, SpriteKind.Player)
-tiles.placeOnTile(GreenApple, tiles.getTileLocation(8, 11))
+tiles.placeOnTile(GreenApple, tiles.getTileLocation(26, 134))
 controller.moveSprite(GreenApple, 100, 0)
 GreenApple.ay = 300
 GreenApple.setStayInScreen(true)
