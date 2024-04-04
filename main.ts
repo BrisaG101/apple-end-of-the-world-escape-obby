@@ -8,12 +8,20 @@ namespace SpriteKind {
     export const escape = SpriteKind.create()
 }
 /**
+ * Some code has been provided as starter code by my teacher, I have my teachers examples of basic coding in my project, it made me animate my sprites, and made my sprite be able to double jump
+ */
+/**
  * The code for Timer functionality was made freely available by: 
  * 
  * https://github.com/microsoft/arcade-timers
  */
 /**
  * The code for Scaling functionality was made freely available by: https://github.com/microsoft/pxt-common-packages/blob/v11/libs/sprite-scaling/docs/reference/sprites/scaling/scale-by-pixels.md
+ */
+/**
+ * Most of the Projectile that follows coding was made freely available by: 
+ * 
+ * https://arcade.makecode.com/79345-65381-79014-11412, @livcheerful
  */
 scene.onHitWall(SpriteKind.Player, function (sprite, location) {
     if (!(GreenApple.isHittingTile(CollisionDirection.Top))) {
@@ -50,11 +58,6 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
         flyingSeed.setKind(SpriteKind.attack)
     })
 })
-/**
- * Most of the Projectile that follows coding was made freely available by: 
- * 
- * https://arcade.makecode.com/79345-65381-79014-11412, @livcheerful
- */
 function projectileBulletThatFollows (spriteHit: Sprite, attackingSprite: Sprite, speed: number) {
     finalBossAttack = sprites.create(assets.image`caca`, SpriteKind.Projectile)
     finalBossAttack.x = attackingSprite.x
@@ -1721,9 +1724,6 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.biggestBaddestEnemy, function (s
         info.changeLifeBy(-10)
     })
 })
-/**
- * Some code has been provided as starter code by my teacher, I have my teachers examples of basic coding in my project, it made me animate my sprites, and made my sprite be able to double jump
- */
 let exitRide: Sprite = null
 let lavaBlock = 0
 let projectile: Sprite = null
